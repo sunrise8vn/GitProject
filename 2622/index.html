@@ -44,7 +44,7 @@
 		function result() {
 			currency = document.getElementById('amount').value;
 			let result = currency * cc;
-			document.getElementById('Result').textContent = "Result: " + result + " " + currencyTo.value;
+			document.getElementById('Result').innerHTML = "Result: <b>" + result + "</b> " + currencyTo.value;
 		}
 	</script>
 </head>
