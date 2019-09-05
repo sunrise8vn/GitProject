@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		#convert {
+			color: #FFFFFF;
+    		background-color: #4CAF50;
+    		height: 30px;
+    		width: 100px;
+		}
+	</style>
+	<script type="text/javascript">
+		var currency;
+		var cc;
+		function changeCurrency() {
+			if(currencyFrom.value == "USD") {
+				switch (currencyTo.value) {
+					case "VND": 
+						cc = 23000;
+						result();
+						break;
+					case "USD": 
+						cc = 1;
+						result();
+						break;
+					
+				}
+			}
+			if(currencyFrom.value == "VND") {
+				switch (currencyTo.value) {
+					case "USD": 
+						cc = 1/23000;
+						result();
+						break;
+					case "VND": 
+						cc = 1;
+						result();
+						break;
+				}
+			}			
+		}
+
+		function result() {
+			currency = document.getElementById('amount').value;
+			let result = currency * cc;
+			document.getElementById('Result').textContent = "Result: " + result + " " + currencyTo.value;
+		}
+	</script>
+</head>
+<body>
+	<form>
+		<input type="text" id="amount">
+		<select id="currencyFrom">
+			<option value="USD" selected>USD</option>
+			<option value="VND">VND</option>
+		</select>
+		<select id="currencyTo">
+			<option value="VND" selected>VND</option>
+			<option value="USD">USD</option>
+		</select>
+		<input type='button' onclick='changeCurrency()' value='Convert'/>
+		 <br />
+	</form>
+	<p id='Result'>Result:</p> 
+
+</body>
+</html>
