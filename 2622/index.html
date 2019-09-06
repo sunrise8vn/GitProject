@@ -11,38 +11,33 @@
 		}
 	</style>
 	<script type="text/javascript">
-		var currency;
 		var cc;
 		function changeCurrency() {
-			if(currencyFrom.value == "USD") {
-				switch (currencyTo.value) {
-					case "VND": 
-						cc = 23000;
-						result();
-						break;
-					case "USD": 
-						cc = 1;
-						result();
-						break;
-					
-				}
-			}
-			if(currencyFrom.value == "VND") {
-				switch (currencyTo.value) {
-					case "USD": 
-						cc = 1/23000;
-						result();
-						break;
-					case "VND": 
-						cc = 1;
-						result();
-						break;
-				}
+			let fromto = currencyFrom.value + "_" + currencyTo.value;
+			switch (fromto) {
+				// USD
+				case "USD_VND":
+					cc = 23000;
+					result();
+					break;
+				case "USD_USD":
+					cc = 1;
+					result();
+					break;
+				// VND
+				case "VND_USD":
+					cc = 1 / 23000;
+					result();
+					break;
+				case "VND_VND":
+					cc = 1;
+					result();
+					break;
 			}			
 		}
 
 		function result() {
-			currency = document.getElementById('amount').value;
+			let currency = document.getElementById('amount').value;
 			let result = currency * cc;
 			document.getElementById('Result').innerHTML = "Result: <b>" + result + "</b> " + currencyTo.value;
 		}
