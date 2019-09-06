@@ -41,7 +41,6 @@ input[type="text"] {
 
 /*.bgcolornumber class is use for all button number buttons (0-9)*/
 .bgcolornumber {
-    /*background-color: #f1f1f1;*/
     background-color: #f1f3f4;
     color: #333;
     transition: all 0.3s ease-in-out;
@@ -54,7 +53,6 @@ input[type="text"] {
  
 /*.bgoperationcolor is use for all operation buttons (+,-,*,/)*/
 .bgopeationcolor {
-    /*background-color: #663399;*/
     background-color: #dfe1e5;
     color: #f9f9f9;
     transition: all 0.3s ease-in-out;
@@ -75,7 +73,6 @@ input[type="text"] {
     transition: all 0.3s ease-in-out;
 }
 .bgoperationcolor:hover {
-    /*background-color: #0033CC;*/
     background-color: #cdced1;
     /*color: #f9f9f9;*/
     transition: all 0.3s ease-in-out;
