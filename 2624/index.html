@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		#convert {
+			color: #FFFFFF;
+    		background-color: #4CAF50;
+    		height: 30px;
+    		width: 100px;
+		}
+	</style>
+	<script type="text/javascript">
+		var cal;
+
+		function calAddition() {
+			cal = parseInt(val1.value) + parseInt(val2.value);
+			result("Addition");
+		}
+
+		function calSubtraction() {
+			cal = parseInt(val1.value) - parseInt(val2.value);
+			result("Subtraction");
+		}
+
+		function calMultiplication() {
+			cal = parseInt(val1.value) * parseInt(val2.value);
+			result("Multiplication");
+		}
+
+		function calDivision() {
+			cal = parseInt(val1.value) / parseInt(val2.value);
+			result("Division");
+		}
+
+		function result(str) {
+			document.getElementById('Result').innerHTML = "Result " + str + ": <b>" + cal + "</b> ";
+		}
+	</script>
+</head>
+<body>
+	<p><b>Calculator</b></p>
+	<form>
+		<input type="text" id="val1">
+		<input type="text" id="val2">
+		<br>
+		<br>
+		<input type='button' onclick='calAddition()' value='Addition(+)'/>
+		<input type='button' onclick='calSubtraction()' value='Subtraction(-)'/>
+		<input type='button' onclick='calMultiplication()' value='Multiplication(x)'/>
+		<input type='button' onclick='calDivision()' value='Division(/)'/>
+		 <br />
+	</form>
+	<p id='Result'>Result:</p> 
+
+</body>
+</html>
