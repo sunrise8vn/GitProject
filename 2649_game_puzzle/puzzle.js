@@ -63,17 +63,25 @@ function checkSet() {
 	if (setFlag) {
 		$('img').css("margin", "0px");
 		$('img').css("padding", "0px");
+		$('img').css("box-shadow", "2px 3px 3px #dc5757");
 		document.getElementById("playAgain").setAttribute("style","visibility: visible");
 		alert('Successful');
+
+		// remove click event change images
+		for (var i=1; i <= 5; i++)
+		{
+			var imageName = "#img" + i.toString();
+			$(imageName).off('click');
+			// $(imageName).unbind('click');
+		}
 	}
-	else {
-		$('img').css("box-shadow", "2px 3px 3px black")
-	}
+	// else {
+	// 	$('img').css("box-shadow", "2px 3px 3px black")
+	// }
 }
 
 var main = function () 
 {
-
 	setImagesRandom();
 
 	$("#img1").click(function(){
@@ -96,16 +104,15 @@ var main = function ()
 		imageClick(5);
 		checkSet();
 	})
-
 }
-
-
-$(document).ready(main());
 
 function playAgain() {
 	$('img').css("margin", "1em");
 	$('img').css("padding", "0.2em");
-	$('img').css("box-shadow", "2px 3px 3px black");
+	$('img').css("box-shadow", "2px 3px 3px #4f4d4d");
 	document.getElementById("playAgain").setAttribute("style","visibility: hidden");
-	setImagesRandom();
+	main();
 }
+
+$(document).ready(main());
+

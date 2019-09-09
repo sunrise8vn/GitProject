@@ -12,15 +12,15 @@ html, body {
 }
 
 .puzzles {
-	margin-top: 1em;
-	margin: auto;
+	margin-top: 10px;
+	/*margin: auto;*/
 }
 
 img {
 	display: block;
 	margin: 1em;
 	padding: 0.2em;
-	box-shadow: 2px 3px 3px black;
+	box-shadow: 2px 3px 3px #4f4d4d;
 	width: 350px;
 	height: 90px;
 }
