@@ -1,0 +1,30 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+.container-fluid {
+	max-width: 940px;
+	padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.puzzles {
+	margin-top: 1em;
+	margin: auto;
+}
+
+img {
+	display: block;
+	margin: 1em;
+	padding: 0.2em;
+	box-shadow: 2px 3px 3px black;
+	width: 350px;
+	height: 90px;
+}
+
+#playAgain {
+	visibility: hidden;
+}
