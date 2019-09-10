@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		window.onload = function() {
+			var sales = null;
+			var tip = null;
+			var salesPercent = 0;
+
+			while (Number.isInteger(sales) == false)
+			{
+				sales = parseInt(prompt('Nhập doanh số bán hàng'));
+			}
+
+			if (sales <= 5000000) {
+				salesPercent = 0.05;
+			}
+			else if (sales <= 8000000) {
+				salesPercent = 0.12;
+			}
+			else if (sales <= 15000000) {
+				salesPercent = 0.15;
+			}
+			else if (sales <= 50000000) {
+				salesPercent = 0.2;
+			}
+			else {
+				salesPercent = 0.25;	
+			}
+
+			tip = sales * salesPercent;
+			sales = sales.toLocaleString({ minimumFractionDigits: 0 });
+			tip = tip.toLocaleString({ minimumFractionDigits: 0 });
+			document.getElementById("sales").textContent = "Doanh số bán hàng: " + sales;
+			document.getElementById("salesPercent").textContent = "Phần trăm doanh số: " + salesPercent;
+			document.getElementById("tip").textContent = "Hoa hồng theo doanh số: " + tip;
+		}
+	</script>
+</head>
+<body>
+	<p id="sales"></p>
+	<p id="salesPercent"></p>
+	<p id="tip"></p>
+</body>
+</html>

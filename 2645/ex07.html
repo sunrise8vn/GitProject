@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		window.onload = function() {
+			let customerFee = 25000;
+			let minute = null;
+			let fee = 0;
+
+			while (Number.isInteger(minute) == false)
+			{
+				minute = parseInt(prompt('Nhập số phút đã sử dụng'));
+			}
+
+			if (minute > 200) {
+				fee = (minute - 200) * 200 + 150 * 400 + 50 * 600;
+			}
+			else if (minute > 50) {
+				fee = (minute - 50) * 400 + 50 * 600;	
+			}
+			else {
+				fee = minute * 600;
+			}
+			fee += customerFee;
+
+			minute = minute.toLocaleString({ minimumFractionDigits: 0 });
+			fee = fee.toLocaleString({ minimumFractionDigits: 0 });
+			document.getElementById("minute").textContent = "Bạn đã gọi: " + minute + " phút";
+			document.getElementById("fee").textContent = "Số tiền phải đóng là: " + fee + " VNĐ";
+		}
+	</script>
+</head>
+<body>
+	<p id="minute"></p>
+	<p id="fee"></p>
+</body>
+</html>

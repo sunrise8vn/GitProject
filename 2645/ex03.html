@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		window.onload = function() {
+			var n = parseInt(prompt('Nhập số nguyên bất kỳ'));
+			while (Number.isInteger(n) == false)
+			{
+				n = parseInt(prompt('Nhập số nguyên bất kỳ'));
+			}
+
+			document.getElementById("n").textContent = "Số nguyên bạn vừa nhập là: " + n;
+			if (n > 0) {
+				document.getElementById("result").textContent = 'Đây là số nguyên dương';
+			}
+			else
+				document.getElementById("result").textContent = 'Đây là số nguyên âm';	
+		}
+	</script>
+</head>
+<body>
+	<p id="n"></p>
+	<p id="result"></p>
+</body>
+</html>

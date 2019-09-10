@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		var a = parseInt(prompt('Nhập số a'));
+		while (Number.isInteger(a) == false)
+		{
+			a = parseInt(prompt('Nhập số a'));
+		}
+
+		var b = parseInt(prompt('Nhập số b'));
+		while (Number.isInteger(b) == false)
+		{
+			b = parseInt(prompt('Nhập số b'));
+		}
+
+		var s = a % b == 0;
+		if (s) alert('a chia hết cho b');
+		else alert('a không chia hết cho b');
+	</script>
+</head>
+<body>
+
+</body>
+</html>

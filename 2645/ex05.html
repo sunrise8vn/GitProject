@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		window.onload = function() {
+			var scoresTest = null;
+			var scoresExamMidterm = null;
+			var scoresExamFinal = null;
+			var scores = null;
+			var rank = null;
+
+			while (Number.isInteger(scoresTest) == false || parseInt(scoresTest) > 10)
+			{
+				scoresTest = parseInt(prompt('Nhập điểm bài kiểm tra'));
+			}
+
+			while (Number.isInteger(scoresExamMidterm) == false || parseInt(scoresExamMidterm) > 10)
+			{
+				scoresExamMidterm = parseInt(prompt('Nhập điểm thi giữa kỳ'));
+			}
+
+			while (Number.isInteger(scoresExamFinal) == false || parseInt(scoresExamFinal) > 10)
+			{
+				scoresExamFinal = parseInt(prompt('Nhập điểm thi cuối kỳ'));
+			}
+
+			scores = (scoresTest + scoresExamMidterm * 2 + scoresExamFinal * 3) / 6;
+			if (scores >= 9) {
+				rank = "Xuất sắc";
+			}
+			else if (scores >= 8) {
+				rank = "Giỏi";
+			}
+			else if (scores >= 7) {
+				rank = "Khá";
+			}
+			else if (scores >= 5) {
+				rank = "Trung bình";
+			}
+			else {
+				rank = "Kém";
+			}
+
+			document.getElementById("score").textContent = "Điểm số học tập: " + scores;
+			document.getElementById("rank").textContent = "Xếp hạng học lực: " + rank;
+		}
+	</script>
+</head>
+<body>
+	<p id="score"></p>
+	<p id="rank"></p>
+</body>
+</html>

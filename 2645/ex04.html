@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		window.onload = function() {
+			var n1 = parseInt(prompt('Nhập số nguyên n1'));
+			while (Number.isInteger(n1) == false)
+			{
+				n1 = parseInt(prompt('Nhập số nguyên n1'));
+			}
+
+			var n2 = parseInt(prompt('Nhập số nguyên n2'));
+			while (Number.isInteger(n2) == false)
+			{
+				n2 = parseInt(prompt('Nhập số nguyên n2'));
+			}
+
+			var n3 = parseInt(prompt('Nhập số nguyên n3'));
+			while (Number.isInteger(n3) == false)
+			{
+				n3 = parseInt(prompt('Nhập số nguyên n3'));
+			}
+
+			var max;
+			var n;
+			max = n1;
+			n = 1;
+			
+			if (max < n2) {
+				max = n2;
+				n = 2;
+				if (max < n3) {
+					max = n3;
+					n = 3;
+				}
+			}
+			else if (max < n3) {
+				max = n3;
+				n = 3;
+			}
+			document.getElementById("nMax").textContent = "Số nguyên lớn nhất là: n" + n + " = " + max;
+		}
+	</script>
+</head>
+<body>
+	<p id="nMax"></p>
+</body>
+</html>

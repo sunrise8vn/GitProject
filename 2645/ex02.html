@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		window.onload = function() {
+			var yearOld = parseInt(prompt('Nhập số tuổi'));
+			while (Number.isInteger(yearOld) == false)
+			{
+				yearOld = parseInt(prompt('Nhập số tuổi'));
+			}
+
+			if (yearOld < 16) {
+				document.getElementById("result").textContent = 'Bạn không đủ điều kiện vào học lớp 10';
+			}
+		}
+		
+			
+	</script>
+</head>
+<body>
+	<p id="result"></p>
+</body>
+</html>
