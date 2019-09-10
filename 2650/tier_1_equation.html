@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tier 1 equation</title>
+	<script type="text/javascript">
+		window.onload = function() {
+			let a = null;
+			let b = null;
+			let x = 0;
+
+			while (Number.isInteger(a) == false)
+			{
+				a = parseInt(prompt('Nhập giá trị a'));
+			}
+
+			while (Number.isInteger(b) == false)
+			{
+				b = parseInt(prompt('Nhập giá trị b'));
+			}
+
+			x = -b / a
+
+			document.getElementById("result").innerHTML = "Nghiệm phương trình bậc 1 là: <b> x = " + x + "</b>";
+		}
+	</script>
+</head>
+<body>
+	<p id="result" style="font-size: 20px;"></p>
+</body>
+</html>

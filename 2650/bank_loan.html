@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tính lãi ngân hàng</title>
+	<script type="text/javascript">
+		window.onload = function() {
+			let money = null;
+			let month = null;
+			let interest_rate = 0.02;
+			let bank_interest = 0;
+			let total_money = 0;
+			let i = 1;
+
+			while (Number.isInteger(money) == false)
+			{
+				money = parseInt(prompt('Nhập số tiền vay ngân hàng'));
+				bank_interest = money;
+			}
+
+			while (Number.isInteger(month) == false)
+			{
+				month = parseInt(prompt('Nhập số tháng kỳ hạn vay'));
+			}
+
+			while (i <= month) {
+				total_money = bank_interest + bank_interest * interest_rate;
+				bank_interest = total_money;
+				i++;
+			}
+
+			money = money.toLocaleString({ minimumFractionDigits: 0 });
+			total_money = total_money.toLocaleString({ minimumFractionDigits: 0 });
+			document.getElementById("money").textContent = "Số tiền vay từ ngân hàng: " + money + " VNĐ";
+			document.getElementById("month").textContent = "Kỳ hạn vay: " + month + " tháng";
+			document.getElementById("totalMoney").textContent = "Tổng tiền cần phải trả: " + total_money + " VNĐ";
+		}
+	</script>
+</head>
+<body>
+	<p id="money" style="font-size: 20px;"></p>
+	<p id="month" style="font-size: 20px;"></p>
+	<p id="totalMoney" style="font-size: 20px;"></p>
+</body>
+</html>

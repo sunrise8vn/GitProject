@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		window.onload = function() {
+			let tempC = null;
+			let tempF = null;
+
+			while (Number.isInteger(tempC) == false)
+			{
+				tempC = parseInt(prompt('Nhập nhiệt độ °C'));
+			}
+
+			tempF = tempC * 9 / 5 + 32;
+
+			document.getElementById("tempC").textContent = "Nhiệt độ hiện tại là: " + tempC + " °C";
+			document.getElementById("tempF").textContent = "Nhiệt độ hiện tại là: " + tempF + " °F";
+		}
+	</script>
+</head>
+<body>
+	<p id="tempC"></p>
+	<p id="tempF"></p>
+</body>
+</html>

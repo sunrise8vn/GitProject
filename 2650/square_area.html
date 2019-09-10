@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Square Area</title>
+	<script type="text/javascript">
+		window.onload = function() {
+			let a = null;
+			let s = 0;
+
+			while (Number.isInteger(a) == false)
+			{
+				a = parseInt(prompt('Nhập chiều dài cạnh a'));
+			}
+
+			s = a * a;
+
+			document.getElementById("areaSquare").textContent = "Diện tích hình vuông là: " + s;
+		}
+	</script>
+</head>
+<body>
+	<p id="areaSquare" style="font-size: 20px;"></p>
+</body>
+</html>

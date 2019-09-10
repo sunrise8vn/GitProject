@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tính tiền điện</title>
+	<script type="text/javascript">
+		window.onload = function() {
+			let customerFee = 25000;
+			let quota = null;
+			let feeQuota100 = 1000;
+			let feeQuota150 = 2000;
+			let feeQuota200 = 2500;
+			let feeQuota200above = 3000;
+			let fee = 0;
+
+			while (Number.isInteger(quota) == false)
+			{
+				quota = parseInt(prompt('Nhập chỉ số điện đã sử dụng'));
+			}
+
+			if (quota > 200) {
+				fee = (quota - 200) * feeQuota200above + 50 * feeQuota200 + 50 * feeQuota150 + 100 * feeQuota100;
+			}
+			else if (quota > 150) {
+				fee = (quota - 150) * feeQuota200 + 50 * feeQuota150 + 100 * feeQuota100;	
+			}
+			else if (quota > 100) {
+				fee = (quota - 100) * feeQuota150 + 100 * feeQuota100;	
+			}
+			else {
+				fee = quota * feeQuota100;
+			}
+			
+			fee += customerFee;
+
+			quota = quota.toLocaleString({ minimumFractionDigits: 0 });
+			fee = fee.toLocaleString({ minimumFractionDigits: 0 });
+			document.getElementById("quota").textContent = "Bạn đã sử dụng điện là: " + quota + " KW";
+			document.getElementById("fee").textContent = "Số tiền phải đóng là: " + fee + " VNĐ";
+		}
+	</script>
+</head>
+<body>
+	<p id="quota" style="font-size: 20px;"></p>
+	<p id="fee" style="font-size: 20px;"></p>
+</body>
+</html>

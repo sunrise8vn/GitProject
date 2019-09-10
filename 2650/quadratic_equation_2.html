@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Quadratic equation 2</title>
+	<script type="text/javascript">
+		window.onload = function() {
+			let a = null;
+			let b = null;
+			let c = null;
+			let delta = null;
+			let squareRoot = null;
+			let x = null;
+			let x1 = null;
+			let x2 = null;
+			let equation = null;
+
+			while (Number.isInteger(a) == false)
+			{
+				a = parseInt(prompt('Nhập giá trị a'));
+			}
+
+			while (Number.isInteger(b) == false)
+			{
+				b = parseInt(prompt('Nhập giá trị b'));
+			}
+
+			while (Number.isInteger(c) == false)
+			{
+				c = parseInt(prompt('Nhập giá trị c'));
+			}
+
+			equation = a + "x<sup>2</sup> + " + b + "x + " + c + " = 0";
+			document.getElementById("equation").innerHTML = "Phương trình bậc 2 đã cho: " + equation;
+
+			if (a == 0) {
+				x = -c / b;
+				document.getElementById("result").innerHTML = "Phương trình có 1 nghiệm: x = " + x;
+			}
+			else {
+				delta = b * b - 4 * a * c;	
+				document.getElementById("delta").innerHTML = "Delta = " + delta;
+				if (delta < 0) {
+					document.getElementById("result").innerHTML = "Phương trình vô nghiệm";
+				}
+				else if (delta == 0) {
+					x = -b / (2 * a);
+					document.getElementById("result").innerHTML = "Phương trình có nghiệm kép: x = " + x;
+				}
+				else {
+					squareRoot = Math.sqrt(delta);
+					x1 = (-b - squareRoot) / (2 * a);
+					x2 = (-b + squareRoot) / (2 * a);
+					document.getElementById("result").innerHTML = "Phương trình có 2 nghiệm:";
+					document.getElementById("result").innerHTML += "<br /> x<sub>1</sub> = " + x1;
+					document.getElementById("result").innerHTML += "<br /> x<sub>2</sub> = " + x2;	
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<p id="equation" style="font-size: 20px;"></p>
+	<p id="delta" style="font-size: 20px;"></p>
+	<p id="result" style="font-size: 20px;"></p>
+</body>
+</html>

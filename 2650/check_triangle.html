@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Check Triangle</title>
+	<script type="text/javascript">
+		window.onload = function() {
+			let a = null;
+			let b = null;
+			let c = null;
+			let result = false;
+
+			while (Number.isInteger(a) == false || parseInt(a) == 0)
+			{
+				a = parseInt(prompt('Nhập chiều dài cạnh a'));
+			}
+
+			while (Number.isInteger(b) == false || parseInt(b) == 0)
+			{
+				b = parseInt(prompt('Nhập chiều dài cạnh b'));
+			}
+
+			while (Number.isInteger(c) == false || parseInt(c) == 0)
+			{
+				c = parseInt(prompt('Nhập chiều dài cạnh c'));
+			}
+
+			if (a > 0 && b > 0 && c > 0) {
+				if (a + b > c) {
+					if (b + c > a) {
+						if (a + c > b) {
+							result = true;
+						}
+					}
+				}
+			}
+
+			if (result) {
+				document.getElementById("Result").textContent = "3 giá trị vừa nhập là 3 cạnh của 1 tam giác";
+			}
+			else {
+				document.getElementById("Result").textContent = "3 giá trị vừa nhập không phải là 3 cạnh của 1 tam giác";
+			}
+		}
+	</script>
+</head>
+<body>
+	<p id="Result" style="font-size: 20px;"></p>
+</body>
+</html>

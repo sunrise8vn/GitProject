@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Check year old</title>
+	<script type="text/javascript">
+		window.onload = function() {
+			let n = null;
+
+			while (Number.isInteger(n) == false)
+			{
+				n = parseInt(prompt('Nhập giá trị tuổi của 1 người'));
+			}
+
+			if (parseInt(n) > 0 && parseInt(n) < 120) {
+				document.getElementById("result").innerHTML = "Giá trị vừa nhập là thuộc độ tuổi của con người";
+			}
+			else {
+				document.getElementById("result").innerHTML = "Giá trị vừa nhập không thuộc độ tuổi của con người. Độ tuổi con người nằm trong khoảng từ 1 tuổi đến 119 tuổi";
+			}
+		}
+	</script>
+</head>
+<body>
+	<p id="result" style="font-size: 20px;"></p>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Triangle Area</title>
+	<script type="text/javascript">
+		window.onload = function() {
+			let a = null;
+			let b = null;
+			let s = 0;
+
+			while (Number.isInteger(a) == false || parseInt(a) == 0)
+			{
+				a = parseInt(prompt('Nhập chiều dài cạnh a'));
+			}
+
+			while (Number.isInteger(b) == false || parseInt(b) == 0)
+			{
+				b = parseInt(prompt('Nhập chiều dài cạnh b'));
+			}
+
+			s = 1 / 2 * a * b;
+
+			document.getElementById("areaTriangle").textContent = "Diện tích hình tam giác vuông là: " + s;
+		}
+	</script>
+</head>
+<body>
+	<p id="areaTriangle" style="font-size: 20px;"></p>
+</body>
+</html>

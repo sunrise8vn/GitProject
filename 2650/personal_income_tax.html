@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tính thuế thu nhập cá nhân</title>
+	<script type="text/javascript">
+		window.onload = function() {
+			let income = null;
+			let millionUnit = 1000000;
+			let level = 0;
+			let level_1 = 0;
+			let level_2 = 0.05;
+			let level_3 = 0.1;
+			let level_4 = 0.15;
+			let level_5 = 0.2;
+			let level_6 = 0.25;
+			let level_7 = 0.3;
+			let level_8 = 0.35;
+			let tax = 0;
+
+			while (Number.isInteger(income) == false)
+			{
+				income = parseInt(prompt('Nhập chỉ số thu nhập cá nhân của bạn'));
+			}
+
+			if (income / millionUnit >= 84) {
+				level = level_8;
+				tax = income * level;
+			}
+			else if (income / millionUnit >= 44) {
+				level = level_7;
+				tax = income * level;
+			}
+			else if (income / millionUnit >= 24) {
+				level = level_6;
+				tax = income * level;
+			}
+			else if (income / millionUnit >= 14) {
+				level = level_5;
+				tax = income * level;
+			}
+			else if (income / millionUnit >= 9) {
+				level = level_4;
+				tax = income * level;
+			}
+			else if (income / millionUnit >= 6) {
+				level = level_3;
+				tax = income * level;
+			}
+			else if (income / millionUnit > 4) {
+				level = level_2;
+				tax = income * level;
+			}
+			else {
+				level = level_1;
+				tax = income * level;
+			}
+
+			income = income.toLocaleString({ minimumFractionDigits: 0 });
+			tax = tax.toLocaleString({ minimumFractionDigits: 0 });
+			document.getElementById("income").textContent = "Thu nhập cá nhân là: " + income + " VNĐ";
+			level = level * 100;
+			document.getElementById("taxPercent").textContent = "Chỉ số % thuế thu nhập cần phải đóng là: " + level + "%";
+			document.getElementById("tax").textContent = "Thuế thu nhập cá nhân cần phải đóng là: " + tax + " VNĐ";
+		}
+	</script>
+</head>
+<body>
+	<p id="income" style="font-size: 20px;"></p>
+	<p id="taxPercent" style="font-size: 20px;"></p>
+	<p id="tax" style="font-size: 20px;"></p>
+</body>
+</html>

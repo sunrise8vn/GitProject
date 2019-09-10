@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Rectangular Area</title>
+	<script type="text/javascript">
+		window.onload = function() {
+			let a = null;
+			let b = null;
+			let s = 0;
+
+			while (Number.isInteger(a) == false || parseInt(a) == 0)
+			{
+				a = parseInt(prompt('Nhập chiều dài cạnh a'));
+			}
+
+			while (Number.isInteger(b) == false || parseInt(b) == 0)
+			{
+				b = parseInt(prompt('Nhập chiều dài cạnh b'));
+			}
+
+			s = a * b;
+
+			document.getElementById("areaRectangular").textContent = "Diện tích hình chữ nhật là: " + s;
+		}
+	</script>
+</head>
+<body>
+	<p id="areaRectangular" style="font-size: 20px;"></p>
+</body>
+</html>

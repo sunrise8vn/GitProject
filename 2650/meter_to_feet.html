@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		window.onload = function() {
+			let meter = null;
+			let feet = null;
+
+			while (Number.isInteger(meter) == false)
+			{
+				meter = parseInt(prompt('Nhập số mét'));
+			}
+
+			feet = meter * 3.2808;
+
+			document.getElementById("meter").textContent = "Giá trị đã cho: " + meter + " mét";
+			document.getElementById("feet").textContent = "Giá trị chuyển đổi: " + feet + " feet";
+		}
+	</script>
+</head>
+<body>
+	<p id="meter" style="font-size: 20px;"></p>
+	<p id="feet" style="font-size: 20px;"></p>
+</body>
+</html>
