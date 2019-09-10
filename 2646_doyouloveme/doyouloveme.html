@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Do you love me</title>
+	<script type="text/javascript">
+		function main() {
+			var x = Math.round(Math.random() * window.innerWidth);
+			var y = Math.round(Math.random() * window.innerHeight);
+			document.getElementById('doyouloveme').style.left = x + 'px';
+			document.getElementById('doyouloveme').style.top = y + 'px';
+		}
+
+		function yesClick() {
+			alert("Yes, you are right");
+		}
+
+		function noHover() {
+			var x = Math.round(Math.random() * window.innerWidth);
+			var y = Math.round(Math.random() * window.innerHeight);
+			document.getElementById('btnNo').style.left = x + 'px';
+			document.getElementById('btnNo').style.top = y + 'px';
+		}
+	</script>
+</head>
+<body onload="main()">
+	<div id="doyouloveme" style="position: absolute; width: 300px">
+		<div>
+			<p style="font-size: 38px;"><b>Do you love me?</b></p>
+		</div>
+		<div style="float: left; margin-left: 20px;">
+			<input type="button" value="Yes" onclick="yesClick()" style="width: 60px">
+		</div>
+		<div style="float: left; margin-left: 20px;">
+			<input type="button" id="btnNo" value="No" onmouseover="noHover()" style="position:absolute; width: 60px">
+		</div>
+	</div>
+</body>
+</html>
