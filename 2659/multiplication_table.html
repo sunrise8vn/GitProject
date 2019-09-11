@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		td {
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<script type="text/javascript">
+		var text = "";
+		var sout;
+		var k = 1;
+		sout = "<table border='1' width='600' cellspacing='0' cellpadding='3'>"
+
+		for (i = 1; i <= 9; i++) {
+		    sout = sout + "<tr>";
+			for (j = 2; j <= 9; j++) {
+		        sout = sout + "<td>" + j  + "x" + k + "=" + j * k + "</td>";
+			}
+		    sout = sout + "</tr>";
+		    k++;
+		}
+		
+		sout = sout + "</table>";
+		document.write(sout)
+	</script>
+
+</body>
+</html>
