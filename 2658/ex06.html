@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+	<p id="demo" style="font-size: 20px;"></p>
+	<script type="text/javascript">
+		var k = 7;
+		var sum = 0;
+		var counts = 0;
+		var total = 0;
+
+		for (i = k; i < i + 1; i += k) {
+			if (i % k == 0) {
+				sum += k;
+				total += sum;
+				document.getElementById('demo').innerHTML += sum + "  ";
+				counts++;
+				if (counts == 5) {
+					break;
+				}
+			}
+		}
+
+		document.getElementById('demo').innerHTML += "<br>Tổng của " + counts + " số chia hết cho " + k + " đầu tiên trong các số tự nhiên là: " + total;
+	</script>
+</body>
+</html>

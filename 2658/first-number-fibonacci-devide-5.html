@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Fibonacci</title>
+</head>
+<body>
+	<p id="demo" style="font-size: 20px;"></p>
+	<script type="text/javascript">
+		var f0 = 0;
+		var f1 = 1;
+		var fn = 1;
+		var n = 20;
+
+		for (i = 0; i < n; i++) {
+			if(i == 0 || i == 1) {
+				fn = 1;
+			}
+			else {
+				f0 = f1;
+				f1 = fn;
+				fn = f0 + f1;
+				if (fn % 5 == 0) {
+					document.getElementById('demo').innerHTML += "Số đầu tiên trong dãy fibonacci chia hết cho 5 là: " + fn;
+					break;
+				}
+			}
+		}
+	</script>
+
+</body>
+</html>

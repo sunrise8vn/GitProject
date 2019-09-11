@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		var temperature_now = parseInt(prompt('Nhập nhiệt độ phòng'));
+
+		while (temperature_now > 100 || temperature_now < 20) {
+			if (parseInt(temperature_now) > 100) {
+				temperature_now = parseInt(prompt('Vui lòng giảm nhiệt độ phòng'));
+			}
+			if (parseInt(temperature_now) < 20) {
+				temperature_now = parseInt(prompt('Vui lòng tăng nhiệt độ phòng'));
+			}
+		}
+
+	</script>
+
+</body>
+</html>

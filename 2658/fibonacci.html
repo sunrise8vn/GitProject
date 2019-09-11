@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Fibonacci</title>
+</head>
+<body>
+	<p id="demo" style="font-size: 20px;"></p>
+	<script type="text/javascript">
+		var f0 = 0;
+		var f1 = 1;
+		var fn = 1;
+
+		for (i = 0; i < 20; i++) {
+			if(i == 0 || i == 1) {
+				fn = 1;
+				document.getElementById('demo').innerHTML += fn + ", ";
+			}
+			else {
+				f0 = f1;
+				f1 = fn;
+				fn = f0 + f1;
+				document.getElementById('demo').innerHTML += fn + ", ";
+			}
+		}
+	</script>
+
+</body>
+</html>
