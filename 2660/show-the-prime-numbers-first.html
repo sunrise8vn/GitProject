@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		td {
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<script type="text/javascript">
+		var numbers = null;
+		var counts = 0;
+		var N = 2;
+
+		while(Number.isInteger(numbers) == false) {
+			numbers = parseInt(prompt('Nhập vào số lượng số nguyên tố'));
+		}
+
+		for (counts; counts < numbers - 1; counts++) {
+			// Biến cờ hiệu
+			var flag = true;
+			// Nếu counts bé hơn 2 tức là không phải số nguyên tố
+		    if (N < 2){
+		        flag = false;
+		    }
+			else if (N == 2){
+		        flag = true;
+		    }
+		    else if (N % 2 == 0){
+				flag = false;
+		    }
+		    else{
+		    	// số nguyên tố là số lẻ thì bắt đầu từ 3
+		        // lặp từ 3 tới N với bước nhảy là 2 (i+=2)
+		        for (var i = 3; i < N - 1; i += 2)
+		        {
+		            if (N % i == 0){
+		                flag = false;
+		                break;
+		            }
+		        }
+		    }
+		    
+		    // Kiểm tra biến flag
+		    if (flag == true){
+		        document.write(N + " là số nguyên tố <br/>");
+		    }
+		    else{
+		        document.write(N + " không phải là số nguyên tố <br/>");
+		    }
+		    N++;
+		}
+	</script>
+
+</body>
+</html>
