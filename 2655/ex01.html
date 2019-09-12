@@ -10,11 +10,11 @@
 		var total = 0;
 
 		while (num != -1) {
-			num = parseInt(prompt("Enter a number: "));
 			if (Number.isInteger(num) == true) {
 				alert(num);
 				total += num;
 			}
+			num = parseInt(prompt("Enter a number: "));
 		}
 		
 		alert(total);
