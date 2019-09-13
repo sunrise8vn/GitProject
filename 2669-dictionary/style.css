@@ -1,0 +1,25 @@
+body {
+    font-size: 25px;
+}
+input {
+    font-size: 20px;
+    padding: 5px;
+}
+.in-btn {
+    color: #FFFFFF;
+    background-color: #2196F3;
+}
+.in-btn {
+    border: none;
+    display: inline-block;
+    padding: 8px 16px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+}
+.in-btn:hover {
+    box-shadow:0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
