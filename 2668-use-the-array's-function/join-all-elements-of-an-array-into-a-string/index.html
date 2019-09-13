@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JavaScript Array Join</title>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style type="text/css">
+    	body {
+            font-size: 20px;
+    	}
+    </style>
+</head>
+<body>
+    <h2>Join all elements of an array into a string</h2><hr/>
+    <p id="demo" />"Red", "Green", "White", "Black"</p>
+    <p id="result" /></p>
+    <input type='button' value='Join Array' onclick='joinArray()'>
+
+	<script type="text/javascript">
+        var myColor = ["Red", "Green", "White", "Black"];
+
+        function joinArray() {
+            var sout = myColor.join();
+            var e = document.getElementById('result');
+            e.innerHTML = "\"" + sout + "\"";
+        }
+    </script>
+</body>
+</html>
