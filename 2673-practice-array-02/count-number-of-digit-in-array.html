@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Document</title>
+    <p id="arr">The array entered is: </p>
+    <p id="countNumer">Number of digits in array: </p>
+</head>
+
+<body>
+    <script>
+        var arr = [" 0", " 1a", " b2", " 3", " 4", " 5c", " 6", " 7", " 8", " 9"];
+        
+        // Method 1
+        let count = 0;
+        var reg = new RegExp('^[0-9]+$');
+
+        for (let i = 0; i < arr.length; i++) {
+            for (let j = 0; j < arr[i].length; j++)
+            {
+                if (arr[i].charAt(j).match(reg)) {
+                    count += 1;
+                }
+            }
+        }
+        document.getElementById('arr').innerHTML += arr;
+        document.getElementById('countNumer').innerHTML += count;
+
+        // Method 2: filter digit in array
+        // var str = arr.toString();
+        // var patt = /\d/g;
+        // str = str.match(patt);
+        // document.getElementById('arr').innerHTML += arr;
+        // document.getElementById('countNumer').innerHTML += str.length;
+        
+    </script>
+</body>
+
+</html>

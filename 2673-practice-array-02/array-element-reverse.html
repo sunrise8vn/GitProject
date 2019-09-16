@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    
+</head>
+<body>
+    <div id="main">
+        <div class="mainInfo" >
+            <p id="arr">The array entered is: </p>
+            <p id="rev">Arrays after reverse: </p>
+        </div>
+    </div> 
+
+    <script type="text/javascript">
+        var arr = ['c', 's', 'c', '2', '6', '1'];
+        
+        document.getElementById('arr').innerHTML += arr;
+        document.getElementById('rev').innerHTML += arr.reverse();
+    </script>
+
+</body>
+</html>

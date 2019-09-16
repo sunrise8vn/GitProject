@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title></title>
+    <p id="arr">The array entered is: </p>
+    <p id="arrNew">The array after replacing the character (-) with (_) is: </p>
+</head>
+
+<body>
+    <script>
+        var arr = [" Hello", " -1a", " b2", " -3", " 4", " 5c", " -6", " 7", " -8", " 9"];
+        var arrNew = [];
+
+        for (let i = 0; i < arr.length; i++) {
+            let str = arr[i].toString();
+            var patt = "-";
+            var pattNew = "_";
+            str = str.replace(patt, pattNew);
+            arrNew.push(str);
+        }
+
+        document.getElementById('arr').innerHTML += arr;
+        document.getElementById('arrNew').innerHTML += arrNew;  
+
+    </script>
+</body>
+
+</html>

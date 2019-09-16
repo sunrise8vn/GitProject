@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Document</title>
+    <p id="str1">String 1 entered is: </p>
+    <p id="str2">String 2 entered is: </p>
+    <p id="compareS1S2">Number of words in string: </p>
+    <br>
+    <p id="str3">String 3 entered is: </p>
+    <p id="str4">String 4 entered is: </p>
+    <p id="compareS3S4">Number of words in string: </p>
+</head>
+
+<body>
+    <script>
+        var str1 = "CODEGYM";
+        var str2 = "hệ thống đào tạo lập trình hiện đại";
+        var str3 = "CODEGYM hệ thống đào tạo lập trình hiện đại";
+        var str4 = "CODEGYM hệ thống đào tạo lập trình hiện đại";
+        var comp12 = str1.localeCompare(str2);
+        var comp34 = str3.localeCompare(str4);
+        
+        if (comp12 == 0) {
+            document.getElementById('compareS1S2').innerHTML = "String 1 is like String 2";    
+        }
+        else {
+            document.getElementById('compareS1S2').innerHTML = "String 1 is not the same as String 2";      
+        }
+
+        if (comp34 == 0) {
+            document.getElementById('compareS3S4').innerHTML = "String 3 is like String 4";    
+        }
+        else {
+            document.getElementById('compareS3S4').innerHTML = "String 3 is not the same as String 4";      
+        }
+
+        document.getElementById('str1').innerHTML += "\"" + str1 + "\"";
+        document.getElementById('str2').innerHTML += "\"" + str2 + "\"";
+        document.getElementById('str3').innerHTML += "\"" + str3 + "\"";
+        document.getElementById('str4').innerHTML += "\"" + str4 + "\"";    
+
+    </script>
+</body>
+
+</html>

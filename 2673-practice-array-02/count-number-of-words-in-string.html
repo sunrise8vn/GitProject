@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Document</title>
+    <p id="str">The string entered is: </p>
+    <p id="numWord">Number of words in string: </p>
+</head>
+
+<body>
+    <script>
+        var str = "CODEGYM hệ thống đào tạo lập trình hiện đại";
+        document.getElementById('str').innerHTML += str;
+        var patt = /\s/g;
+        str = str.replace(patt,'');
+        document.getElementById('numWord').innerHTML += str.length;
+    </script>
+</body>
+
+</html>
