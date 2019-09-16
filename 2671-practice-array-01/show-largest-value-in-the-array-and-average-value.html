@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    
+</head>
+<body>
+	<div id="main">
+		<div class="mainInfo" >
+	        <h2>Displays the element with the largest value in the array and average value</h2>
+            <p id="listInt">The array of integers entered is: </p>
+	        <p id="result">The element has the largest value in the array: </p>
+	    </div>
+    </div> 
+
+    <script type="text/javascript">
+        var arrayInt = [];
+        var count = 0;
+        var sin = false;
+        var index = 0;
+
+        while (count < 5) {
+            sin = parseInt(prompt('Enter an integer'));
+            if (Number.isInteger(sin) == true) {
+                arrayInt.push(sin);
+                document.getElementById('listInt').innerHTML += " " + arrayInt[count];   
+                count ++;
+            }
+        }
+
+        findLargestValueInArray();
+        averageValueInArray();
+
+        function findLargestValueInArray() {
+            let max = arrayInt[0];
+            for (let i = 1; i < arrayInt.length; i++) {
+                if (arrayInt[i] > max) {
+                    max = arrayInt[i];
+                    index = i;
+                }
+            }
+            document.getElementById('result').innerHTML += max;
+        }
+
+        function averageValueInArray() {
+            let total = 0;
+            let average = 0;
+            for (let i = 0; i < arrayInt.length; i++) {
+                total  += arrayInt[i];
+                average = total / (i + 1);
+            }
+            document.getElementById('result').innerHTML += "<br>"
+            document.getElementById('result').innerHTML += "The average value of the elements in the array: " + average;
+        }
+
+    </script>
+
+</body>
+</html>

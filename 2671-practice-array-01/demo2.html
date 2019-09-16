@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<script>
+    var a = 'aaaaadsadsa-2567889-3-317-122-12-aa';
+    var temp;
+       function check(str){
+           var reg = new RegExp('^[0-9]+$');
+           count = 0;
+           arr = [];
+           for(let i =0;i<str.length; i++)
+           {
+               if(str.charAt(i)== '-'){
+                   for(let j = 0; j <= str.length-i; j++)
+                   {
+                       if(str[j].match(reg)){
+                        temp += arr.push(str[j]);
+                           // arr.push(str[j]);
+                       } else {
+                           arr.push('-');
+                       }
+                   }
+                   break;
+               }
+           }
+           return arr;
+       }
+       document.write(check(a));
+</script>
+
+</body>
+</html>

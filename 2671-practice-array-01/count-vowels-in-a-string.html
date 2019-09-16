@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    
+</head>
+<body>
+    <script type="text/javascript">
+        var strCharacter = "aa-123dsadsa-2567889-3-312-122-12-aa";
+        var count = 0;
+
+        numberOfVowels();
+
+        function numberOfVowels() {
+            var reg = new RegExp('^[0-9]+$');
+            for(let i = 0; i < strCharacter.length; i++)
+            {
+                if(strCharacter.charAt(i) == '-'){
+                    b = strCharacter.charAt(i+1).match(reg);
+                    if(b)
+                    {
+                        count++;
+                    }
+                }
+            }
+            return count;                               
+        }
+        document.write(count);
+    </script>
+
+</body>
+</html>

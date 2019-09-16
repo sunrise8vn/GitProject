@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    
+</head>
+<body>
+    <div id="main">
+        <div class="mainInfo" >
+            <h2>Arrange the array in descending order and display the sorted array</h2>
+            <p id="listInt">The array of integers entered is: </p>
+            <p id="result">Arrays after sorting in descending order: </p>
+        </div>
+    </div> 
+
+    <script type="text/javascript">
+        var arrayInt = [];
+        var sin = false;
+        var count = 0;
+
+        while (count < 10) {
+            sin = parseInt(prompt('Enter an integer'));
+            if (Number.isInteger(sin) == true) {
+                arrayInt.push(sin);
+                document.getElementById('listInt').innerHTML += " " + arrayInt[count];   
+                count ++;
+            }
+        }
+
+        arrangeArrayDescOrder();
+
+        function arrangeArrayDescOrder() {
+            arrayInt.sort(function(a, b) { return b-a; });
+        }
+
+        document.getElementById('result').innerHTML += " " + arrayInt;
+        
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    
+</head>
+<body>
+	<div id="main">
+		<div class="mainInfo" >
+            <p id="arrayA">Array A: </p>
+	        <p id="arrayB">Array B: </p>
+            <p id="arrayC">Array C: </p>
+	    </div>
+    </div> 
+    <script type="text/javascript">
+        var arrayA= [1, 5, 6, 8, 0, 9, 3, 2, 10, 20];
+        var arrayB= [12, 5, 18, 19, 0, 25, 2, 8, 9, 10];
+        var arrayC= [];
+
+        joinArray();
+
+        function joinArray() {
+            arrayC = arrayA.concat(arrayB);
+        }
+
+        document.getElementById('arrayA').innerHTML += arrayA;
+        document.getElementById('arrayB').innerHTML += arrayB;
+        document.getElementById('arrayC').innerHTML += arrayC;
+    </script>
+
+</body>
+</html>

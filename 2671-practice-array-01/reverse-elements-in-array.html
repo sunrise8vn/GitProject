@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    
+</head>
+<body>
+    <div id="main">
+        <div class="mainInfo" >
+            <h2>Displays the element with the largest value in the array and its position</h2>
+            <p id="listInt">The array of integers entered is: </p>
+            <p id="result">Reverse elements in array: </p>
+        </div>
+    </div> 
+
+    <script type="text/javascript">
+        var arrayInt = [];
+        var count = 0;
+        var sin = false;
+
+        while (count < 5) {
+            sin = parseInt(prompt('Enter an integer'));
+            if (Number.isInteger(sin) == true) {
+                arrayInt.push(sin);
+                document.getElementById('listInt').innerHTML += " " + arrayInt[count];   
+                count ++;
+            }
+        }
+
+        reverseElementInArray();
+
+        function reverseElementInArray() {
+            var first = 0;
+            var last = arrayInt.length - 1;
+            while (first < last) {
+                let tempo = arrayInt[first];
+                arrayInt[first] = arrayInt[last];
+                arrayInt[last] = tempo;
+                first++;
+                last--;
+            }                               
+            document.getElementById('result').innerHTML += arrayInt;
+        }
+    </script>
+
+</body>
+</html>

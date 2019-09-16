@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    
+</head>
+<body>
+    <div id="main">
+        <div class="mainInfo" >
+            <!-- <h2>Displays the element with the largest value in the array and its position</h2> -->
+            <p id="listInt">The array of integers entered is: </p>
+            <p id="v"></p>
+            <p id="result">Array after sort is: </p>
+        </div>
+    </div> 
+
+    <script type="text/javascript">
+        var arrayInt = [];
+        var arrayIntAfter = [];
+        var sin = false;
+        var count = 0;
+        var v = false;
+        var isArray = false;
+
+        while (count < 5) {
+            sin = parseInt(prompt('Enter an integer'));
+            if (Number.isInteger(sin) == true) {
+                arrayInt.push(sin);
+                document.getElementById('listInt').innerHTML += " " + arrayInt[count];   
+                count ++;
+            }
+        }
+
+        while (Number.isInteger(v) == false) {
+            v = parseInt(prompt('Enter the integer element V'));
+            document.getElementById("v").innerHTML += v;
+        }
+
+        identifyElementOfArray();
+
+        function identifyElementOfArray() {
+            for (let i = 0; i < arrayInt.length; i++) {
+                if (arrayInt[i] == v) {
+                    // arrayIntAfter.push(0);
+                    arrayInt.splice(i, 1);
+                    arrayInt.push(0);
+                    isArray = true;
+                    return identifyElementOfArray();
+                }
+            }
+        }
+
+        if (isArray== true) {
+            document.getElementById("v").innerHTML = "V = " + v + " is in the array";
+        }
+        else {
+            document.getElementById('v').innerHTML = "V = " + v + " is not in the array";
+        }
+        document.getElementById('result').innerHTML += " " + arrayInt;
+        
+    </script>
+
+</body>
+</html>

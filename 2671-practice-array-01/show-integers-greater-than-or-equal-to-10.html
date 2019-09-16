@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    
+</head>
+<body>
+	<div id="main">
+		<div class="mainInfo" >
+	        <h1>Displays how many integers greater than or equal to 10</h1>
+            <p id="listInt">The array of integers entered is: </p>
+	        <p id="result">Integer's array greater than or equal to 10: </p>
+	    </div>
+    </div>
+
+    <script type="text/javascript">
+        var arrayInt = [];
+        var count = 0;
+        var sin = false;
+        var index = 0;
+
+        while (count < 10) {
+            sin = parseInt(prompt('Enter an integer'));
+            if (Number.isInteger(sin) == true) {
+                arrayInt.push(sin);
+                document.getElementById('listInt').innerHTML += " " + arrayInt[count];   
+                count ++;
+            }
+        }
+
+        display_array_integer_greater_than_or_equal_10();
+
+        function display_array_integer_greater_than_or_equal_10() {
+            let count = 0;
+            for (let i = 0; i < arrayInt.length; i++) {
+                if (arrayInt[i] >= 10) {
+                    count++;
+                }
+            }
+            document.getElementById('result').innerHTML += count;
+        }
+    </script>
+
+</body>
+</html>

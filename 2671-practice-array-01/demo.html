@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<script>
+ var a = '-29-3-412-123-12-aa';
+ this.temp ='';
+ this.index = 0;
+ this.conf2 = false;
+ this.next = false;
+ this.s =[];
+    check(a);
+       function check(str){
+           // biểu thức chính quy kiểm tra các kí tự là số
+           var reg = new RegExp('^[0-9]+$');
+           for(let i = index; i < str.length; i++)
+           {
+               if (str.charAt(i)== '-'){
+                 	  temp = '-';
+                    // console.log(i);
+                    index++;
+                    next = true;
+                    continue;
+               }
+               if (next == true) {
+                  b = str.charAt(index).match(reg);
+                  if (b) {
+                      temp += b;
+                      // alert(index + " " + temp);
+                      console.log(index + " " + temp);
+                      index++;
+                      conf2 = true;
+                      continue;
+                      // console.log(index + " " + temp);
+                      // document.write(temp);
+                      // return check(a);
+                  }
+                  else {
+                    if (conf2 == true) {
+                        // alert('success ' + index + " " + temp);
+                        s.push(temp);
+                        temp = '';
+                        conf2 = false;
+                        next = false;
+                        index++;
+                    }
+                  }
+              }
+              else {
+                  // next = false;
+                  // index++;
+              }
+           }
+           // return s;
+       }
+       document.write(s);
+       //document.write(chek(a));
+</script>
+
+</body>
+</html>
