@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script> -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript">
+    	this.s = "TÔI LÀ MỘT ĐỨA NGỐC STUPID !!!";
+    	this.n = "";
+    	function typeTextarea() {
+    		let t = document.f.txt.value;
+    		let len = t.length;
+    		if (len > 0) {
+    			for (let i = 1; i <= s.length + 1; i++) {
+    				n = s.substring(0, len);
+    				if(i == len)
+                    {
+                        n = "";
+                    }
+    			}
+    		}
+    		document.f.txt.value = n;
+    		n = "";
+    		setTimeout("typeTextarea()", 1);
+    	}
+    </script>
+</head>
+<body>
+	<div id="main">
+		<div class="mainInfo" >
+	        <h1>Type anthing slowly</h1>
+	        <form name="f">
+	        	<textarea name="txt" cols="40" rows="10" onkeydown="typeTextarea()"></textarea>
+	        </form>
+	    </div>
+    </div>
+
+</body>
+</html>
