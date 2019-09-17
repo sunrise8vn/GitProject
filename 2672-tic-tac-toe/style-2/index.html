@@ -128,25 +128,27 @@
 
             for(var i = 0; i < boxes.length; i++){
                 boxes[i].onclick = function() {
-                    if (this.innerHTML !== "X" && this.innerHTML !== "O") {
-                        if(X_or_O % 2 === 0) {
-                            this.innerHTML = "X";
-                            $(this).css('color', "red");
-                            if (getWinner() == true) { 
-                                endGame(this.innerHTML);
+                    if (state.current == state.gameReady) {                  
+                        if (this.innerHTML !== "X" && this.innerHTML !== "O") {
+                            if(X_or_O % 2 === 0) {
+                                this.innerHTML = "X";
+                                $(this).css('color', "red");
+                                if (getWinner() == true) { 
+                                    endGame(this.innerHTML);
+                                }
+                                X_or_O += 1;
+                            } else {
+                                this.innerHTML = "O";
+                                $(this).css('color', "blue");
+                                if (getWinner() == true) { 
+                                    endGame(this.innerHTML);
+                                }
+                                X_or_O -= 1;
                             }
-                            X_or_O += 1;
-                        } else {
-                            this.innerHTML = "O";
-                            $(this).css('color', "blue");
-                            if (getWinner() == true) { 
-                                endGame(this.innerHTML);
-                            }
-                            X_or_O -= 1;
                         }
-                    }
-                    else {
-                        $("#box" + i).css('color', "red");
+                        else {
+                            $("#box" + i).css('color', "red");
+                        }
                     }
                 }
             }
@@ -249,9 +251,6 @@
             btnWin.innerHTML = player + " is the winner";
             btnWin.onclick = function() {
                 $("#winModal").css('display', "none");
-                for (let z = 1; z <= widthBoard; z++) {
-                    boxes[z].onclick = null;
-                }
             }
 
             /*When the user clicks anywhere outside of the modal, close it*/
