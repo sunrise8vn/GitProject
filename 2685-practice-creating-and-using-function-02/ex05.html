@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    
+</head>
+<body>
+    <p><span>Enter a integer: </span><input type="text" id="num"><span> </span><input type="button" onclick="checkNumberToAdd(num.value);" value="Add number"></p>
+    <p id="numbers"></p>
+    <p id="result"></p>
+
+    <script type="text/javascript">
+        var count = 0;
+        var onlyNumber;
+        var reg = new RegExp('^[0-9]+$');
+        var arr = [];
+
+        function checkNumberToAdd(num) {
+            onlyNumber = true;
+            if (count < 3 && num.length > 0) {
+                var reg = new RegExp('^[0-9]+$'); 
+                for (let i = 0; i < num.length; i++) {
+                    let b = num.charAt(i).match(reg);
+                    if(!b) {
+                        onlyNumber =  false;
+                        break;
+                    }
+                }
+                if (onlyNumber) {
+                    count++;
+                    arr.push(num);
+                    document.getElementById('num').value = null;
+                    document.getElementById('numbers').innerHTML += "Number " + count + ": <b>" + num + "</b><br/>";
+                    if (count == 3) {
+                        smallestIntNumber();
+                    }
+                }
+                else {
+                    alert('Please enter numbers only');
+                }
+            }
+        }
+
+        function smallestIntNumber() {
+            arr.sort(function(a, b) { return b - a; });
+            document.getElementById('result').innerHTML += "Integer with the smallest value: <b>" + arr[2] + "</b>";
+        }
+
+    </script>
+</body>
+</html>

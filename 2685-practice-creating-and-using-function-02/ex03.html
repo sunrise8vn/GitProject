@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    
+</head>
+<body>
+    <p><span>Enter a integer: </span><input type="number" id="number"></p>
+    <p><input type="button" onclick="showFactorial(number.value);" value="Calculate factorial"></p>
+    <p id="result"></p>
+
+    <script type="text/javascript">
+
+        // đệ quy
+        function factorial(n) {
+            if (n == 1)
+                return 1;
+            return n * factorial(n - 1);
+            
+        }
+
+        function showFactorial(n) {
+            document.getElementById('result').innerHTML = "Result: <b>" + factorial(n) + "</b>";    
+        }
+        
+        // vòng lặp
+        // function factorial(n) {
+        //     let fac = 1;
+        //     for (i = 1; i <= n; i++)
+        //         fac *= i;
+            // document.getElementById('result').innerHTML = "Result: <b>" + fac + "</b>";
+        // }
+    </script>
+</body>
+</html>

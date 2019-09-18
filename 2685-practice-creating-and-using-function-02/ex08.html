@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    
+</head>
+<body>
+    <p><span>Enter a integer: </span><input type="number" id="num"><span> </span>
+        <input type="button" onclick="addNumber(num.value);" value="Add number"></p>
+    <p id="listInt"></p>
+    <p><input type="button" value="Reverse the list" onclick="reverseArray()"></p>
+    <p id="result"></p>
+
+    <script type="text/javascript">
+        var arrInt = [];
+
+        function addNumber(num) {
+            if (num.length > 0) {
+                arrInt.push(num);
+
+                document.getElementById('num').value = null;
+                var listInt = document.getElementById('listInt');
+                listInt.innerHTML = "Integer array entered: ";
+                for (let i = 0; i < arrInt.length; i++) {
+                    listInt.innerHTML += arrInt[i] + " ";
+                }
+            }
+        }
+
+        function reverseArray() {
+            if (arrInt.length > 0) {
+                arrInt = arrInt.reverse();
+                document.getElementById('result').innerHTML = "Array after reversing: ";
+                for (let i = 0; i < arrInt.length; i++) {
+                    document.getElementById('result').innerHTML += arrInt[i] + " ";    
+                }
+            }
+        }
+
+    </script>
+</body>
+</html>

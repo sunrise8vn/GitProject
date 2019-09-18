@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    
+</head>
+<body>
+    <p><span>Enter a integer: </span><input type="text" id="sIn"></p>
+    <p><input type="button" onclick="checkNumber(sIn.value);" value="Check number"></p>
+    <p id="result"></p>
+
+    <script type="text/javascript">
+        var onlyNumber;
+        var reg = new RegExp('^[0-9]+$');
+
+        function checkNumber(num) {
+            onlyNumber = true;
+            var reg = new RegExp('^[0-9]+$'); 
+            for (let i = 0; i < num.length; i++) {
+                let b = num.charAt(i).match(reg);
+                if(!b) {
+                    onlyNumber =  false;
+                    break;
+                }
+            }
+            document.getElementById('result').innerHTML = "Result is number: <b>" + onlyNumber + "</b>";
+        }
+    </script>
+</body>
+</html>

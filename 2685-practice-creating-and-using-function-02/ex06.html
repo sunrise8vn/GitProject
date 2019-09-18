@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    
+</head>
+<body>
+    <p><span>Enter a integer: </span><input type="number" id="sIn">
+        <span> </span>
+        <input type="button" onclick="positiveIntNum(sIn.value);" value="Check number">
+    </p>
+    <p id="result"></p>
+
+    <script type="text/javascript">
+        function positiveIntNum(num) {
+            var positiveInt = false;
+            if (parseInt(num) > 0) {
+                positiveInt =  true;
+            }
+            var result = document.getElementById('result');
+            result.innerHTML = "This is a positive integer: <b>" + positiveInt + "</b>";
+        }
+    </script>
+</body>
+</html>

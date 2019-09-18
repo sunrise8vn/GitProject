@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    
+</head>
+<body>
+    <p><span>Enter 1 character: </span><input type="text" id="characterIn"><span> </span>
+        <input type="button" onclick="addCharacter(characterIn.value);" value="Add"></p>
+    <p id="listCharacter"></p>
+    <p><span>Enter 1 character to check: </span><input type="text" id="characterCheck"><span> </span>
+        <input type="button" onclick="checkCharacter();" value="Check"></p>
+    <p id="result"></p>
+
+    <script type="text/javascript">
+        var arrCharacter = [];
+        var count = 0;
+
+        function addCharacter(character) {
+            if (character.length > 0) {
+                if (character.length > 1) {
+                    character = character.slice(0, 1);
+                }
+                arrCharacter.push(character);
+                document.getElementById('characterIn').value = null;
+                var listCharacter = document.getElementById('listCharacter');
+                listCharacter.innerHTML = "Integer array entered: ";
+                for (let i = 0; i < arrCharacter.length; i++) {
+                    listCharacter.innerHTML += arrCharacter[i] + " ";
+                }
+            }
+        }
+
+        function checkCharacter() {
+            var len = arrCharacter.length;
+            var character = document.getElementById('characterCheck').value;
+            var result = document.getElementById('result');
+            if (len > 0) {
+                for (let i = 0; i < len; i++) {
+                    if (arrCharacter[i] == character) {
+                        count++;
+                    }
+                }
+
+                if (count > 0) {
+                    result.innerHTML = "There are " + count +" occurrences in the above list";
+                }
+                else {
+                    result.innerHTML = null;
+                    alert('-1');
+                }
+                count = 0;
+            }
+        }
+
+    </script>
+</body>
+</html>

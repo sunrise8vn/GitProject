@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    
+</head>
+<body>
+    <input type="number" id="radius">
+    <p><input type="button" onclick="areaCircle(radius.value);" value="Calculate the area of a circle"></p>
+    <p><input type="button" onclick="circumferenceCircle(radius.value);" value="Calculate the circumference of a circle"></p>
+    <p id="result"></p>
+
+    <script type="text/javascript">
+        function areaCircle(radius) {
+            document.getElementById('result').innerHTML = "Circle area: " + Math.PI * Math.pow(radius, 2);
+        }
+
+        function circumferenceCircle(radius) {
+            document.getElementById('result').innerHTML = "Circle circumference: " + 2 * Math.PI * radius;
+        }
+    </script>
+</body>
+</html>

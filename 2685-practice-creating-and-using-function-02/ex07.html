@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    
+</head>
+<body>
+    <p><span>Enter a integer: </span><input type="number" id="num"><span> </span><input type="button" onclick="addNumber(num.value);" value="Add number"></p>
+    <p id="numbers"></p>
+    <p id="result"></p>
+
+    <script type="text/javascript">
+        var count = 0;
+        var arrInt = [];
+
+        function addNumber(num) {
+            if (count < 2 && num.length > 0) {
+                count++;
+                arrInt.push(num);
+                document.getElementById('num').value = null;
+                document.getElementById('numbers').innerHTML += "Number " + count + ": <b>" + num + "</b><br/>";
+                if (count == 2) {
+                    reverseArray();
+                }
+            }
+        }
+
+        function reverseArray() {
+            arrInt = arrInt.reverse();
+            for (let i = 1; i <= arrInt.length; i++) {
+                document.getElementById('result').innerHTML += "Number " + i + ": <b>" + arrInt[i-1] + "</b><br/>";    
+            }
+        }
+
+    </script>
+</body>
+</html>
