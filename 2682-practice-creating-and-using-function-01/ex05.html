@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    
+</head>
+<body>
+    <p id="result"></p>
+    <script type="text/javascript">
+        var arr1 = ["Polaris", "Aldebaran","Deneb","Vega","Altair","Dubhe","Regulus"];
+        var arr2 = ["Ursa Minor", "Tarurus","Cygnus","Lyra","Aquila","Ursa Major","Leo"];
+
+        var strStar = null;
+        var onlyString = false;
+        var constellation = null;
+        var count = 0;
+
+        while (onlyString == false) {
+            strStar = prompt('Enter a string');
+            var reg = new RegExp('^[0-9]+$'); 
+            for (let i = 0; i < strStar.length; i++) {
+                let b = strStar.charAt(i).match(reg);
+                if(b) {
+                    onlyString =  false;
+                    break;
+                }
+                else {
+                    onlyString = true;
+                }
+            }
+        }
+        
+        findStar(strStar);  
+
+        function findStar(str) {
+            for (let i = 0; i < arr1.length; i++) {
+                if (arr1[i].toLowerCase() == str.toLowerCase()) {
+                    count++;
+                    constellation = arr2[i];
+                    break;
+                }
+            }
+
+            if (count > 0) {
+                document.getElementById('result').innerHTML = "Constellation found is: " + constellation;
+            }
+            else {
+                alert("Not found constellation");
+            }
+        }
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    
+</head>
+<body onload="getValue();">
+    <script type="text/javascript">
+        var num = null;
+        
+    	function getValue() {
+            while (Number.isInteger(num) == false) {
+                num = parseInt(prompt('Nhập vào 1 số'));
+            }
+            document.write(num + 1);
+    	}
+    </script>
+</body>
+</html>
