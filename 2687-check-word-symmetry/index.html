@@ -24,16 +24,37 @@
             alert('Asymmetrical string');
         }
 
+
+        // Method 1
+        // function isPalindrome(s) {
+        //     var i = 0;
+        //     var j = s.length - 1;
+        //     var isPal = true;
+        //     while (i < j) {
+        //         if (s.charAt(i) != s.charAt(j)) {
+        //             isPal = false;
+        //             break;
+        //         }
+        //         else {
+        //             i++;
+        //             j--;
+        //         }
+        //     }
+        //     return isPal;
+        // }
+ 
+        // Method 2
         function isPalindrome(s) {
             let len = s.length;
-            for (let i = 0; i < len; i++) {
-                if (s.charAt(i) == s.charAt(len - 1)) {
+            for (let i = 0; i < len / 2; i++) {
+                if (s.charAt(i) == s.charAt(len - i - 1)) {
                     s = s.slice(1);
                     s = s.slice(0, len - 2);
                     return isPalindrome(s);
                 }
                 else {
                     return false;
+                    break;
                 }
             }
         }
