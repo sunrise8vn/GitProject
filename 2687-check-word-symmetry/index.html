@@ -17,11 +17,11 @@
             word = prompt('Enter a word');
         }
 
-        if (isPalindrome(word) == true) {
-            alert('Chuỗi đối xứng');
+        if (isPalindrome(word) != false) {
+            alert('Chain of symmetry');
         }
         else {
-            alert('Chuỗi bất đối xứng');
+            alert('Asymmetrical string');
         }
 
         function isPalindrome(s) {
@@ -30,12 +30,10 @@
                 if (s.charAt(i) == s.charAt(len - 1)) {
                     s = s.slice(1);
                     s = s.slice(0, len - 2);
-                    return true;
                     return isPalindrome(s);
                 }
                 else {
                     return false;
-                    break;
                 }
             }
         }
