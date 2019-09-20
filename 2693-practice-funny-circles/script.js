@@ -53,10 +53,19 @@ function createCircleRandomColor() {
 
 function createCircleRandomPosition() {
 	var ctx = document.getElementById('myCanvas').getContext('2d');
-	var radius = Math.floor(Math.random() * 150);
+	var radius = Math.floor(Math.random() * 80);
 	var color = getRandomColor();
-	var x = Math.random() * window.innerWidth;
-	var y = Math.random() * window.innerHeight;
+	var canvas = document.getElementById('myCanvas');
+	var width = canvas.width;
+	var height = canvas.height;
+	// var x = Math.random() * window.innerWidth;
+	// var y = Math.random() * window.innerHeight;
+	var x = Math.random() * width;
+	var y = Math.random() * height;
+	if (x < radius) x = radius;
+	if (x > width - radius) x = width - radius; 
+	if (y < radius) y = radius;
+	if (y > height - radius) y = height - radius; 
 	var circle = new Circle(x, y, radius);
 	ctx.beginPath();
 	ctx.arc(circle.x, circle.y, circle.radius, 0, 2 * Math.PI);
@@ -80,4 +89,4 @@ function createMultipleCircle(n){
 // createCircleRandomPosition();
 // createCircleRandomPosition();
 
-createMultipleCircle(30);
+createMultipleCircle(50);
