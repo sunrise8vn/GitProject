@@ -12,7 +12,7 @@ function playGame() {
 		guessUser = parseInt(prompt('Nhập giá trị máy tính sẽ chọn trong khoảng trên'));
 	}
 
-	random = Math.floor(Math.random() * rangeUser);
+	random = Math.floor(Math.random() * (rangeUser + 1));
 
 	while (counts < 3 && !success) {
 		if (guessUser > random) {
