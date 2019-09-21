@@ -22,7 +22,7 @@
   width: 1.9em;
   height: 1.9em;
   margin-top: -0.3em;
-  margin-left: -0.05em;
+  margin-left: -0.1em;
   border-radius: 1em;
   background: #c9c9c9;
   box-shadow: 5px 0px 28px -9px rgba(0, 0, 0, 0.75);
@@ -43,18 +43,18 @@
 
 #toggleGood:checked ~ .label #switchGood {
   background: #6cbd5a;
-  transform: translatex(2.2em);
+  transform: translatex(2.5em);
   transition: transform 0.2s ease-in;
 }
 
 #toggleCheap:checked ~ .label #switchCheap {
   background: #5575be;
-  transform: translatex(2.2em);
+  transform: translatex(2.5em);
   transition: transform 0.2s ease-in;
 }
 
 #toggleFast:checked ~ .label #switchFast {
   background: #ba5460;
-  transform: translatex(2.2em);
+  transform: translatex(2.5em);
   transition: transform 0.2s ease-in;
 }
