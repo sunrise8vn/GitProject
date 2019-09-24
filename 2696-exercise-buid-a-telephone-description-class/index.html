@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" type="text/css" href="chat.css">
+    <!-- <script src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    
+</head>
+<body>
+
+<div id="main">
+    <div class="container" id="NOKIA">
+        <div class="row">
+            <div class="toggleSwitch col-md-6">
+                <div style="float: left;">
+                    <p style="margin-left: -15px;">
+                        <input id="togglePowerNO" type="checkbox" onclick="switchPowerNO();"/>
+                        <label class="label" for="togglePowerNO">
+                            <span id="switchPowerNO"></span>
+                        </label>
+                    </p>
+                </div>
+                <div style="float: left; margin-left: 10px; margin-top: -4px;">
+                    <b>POWER</b>
+                </div>
+            </div>
+            <div class="toggleSwitch col-md-6">
+                <div style="float: right;">
+                    <p>
+                        <input id="toggleChargeNO" type="checkbox" onclick="switchChargeNO();"/>
+                        <label class="label" for="toggleChargeNO">
+                            <span id="switchChargeNO"></span>
+                        </label>
+                    </p>
+                </div>
+                <div style="float: right; margin-left: 10px; margin-top: -4px;">
+                    <b>CHARGE</b>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading" style="height: 41px;">
+                        <div class="col-md-5">
+                            <span class="glyphicon glyphicon-comment" style="margin-left: -15px;"></span> Nokia
+                        </div>
+                        <div class="col-md-5 card">
+                            <img id="messRefresh" src="message.png">
+                            <img id="messRefresh" src="message2.png" class="img-top" onclick="inbox('#NOKIA', 'NO', 'inboxNO', 'iphone', 'nokia')">
+                        </div>
+                        <div class="pull-right">
+                            <img src="battery.png"><span id="batteryNO"></span>
+                        </div>
+                    </div>
+                    <div class="panel-collapse collapse div_compose">
+                        <div class="panel-body" style="height: 250px;">
+                            <ul class="composeNO chat">
+                            </ul>
+                        </div>
+                        <div class="panel-footer">
+                            <div class="row">
+                                <div class="col-md-12 ">
+                                    <div class="input-group">
+                                        <input id="inputNO" type="text" class="form-control input-sm" placeholder="Type your message here..." onchange="setDraftNokia()">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-warning btn-sm" onclick="chatNO(); inputNO.value = null;">Send</button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-collapse1 collapse1 div_inbox" style="height: 301px;">
+                        <div class="panel-body">
+                            <ul class="inboxNO chat">
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="panel-collapse1 collapse1 div_sent" style="height: 301px;">
+                        <div class="panel-body">
+                            <ul class="sentNO chat">
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="panel-collapse1 collapse1 div_allMessage" style="height: 301px;">
+                        <div class="panel-body">
+                            <ul class="allNO chat">
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="panel-collapse1 collapse1 homeMenu" style="width: 100%; height: 301px;">
+                        <div class="col-md-6" style="padding: 30px;">
+                            <input type="button" class="btn_compose btn btn-warning" value="Compose Message" style="width: 100%; height: 80px;" onclick="show_Compose()">    
+                        </div>
+                        <div class="col-md-6" style="padding: 30px;">
+                            <input type="button" class="btn_inbox btn btn-info" value="Inbox Message" style="width: 100%; height: 80px;" onclick="inbox('#NOKIA', 'NO', 'inboxNO', 'iphone', 'nokia')">
+                        </div>
+                        <div class="col-md-6" style="padding: 30px;">
+                            <input type="button" class="btn_sent btn btn-success" value="Sent Message" style="width: 100%; height: 80px;" onclick="sent('#NOKIA', 'NO', 'sentNO', 'nokia', 'iphone')">
+                        </div>
+                        <div class="col-md-6" style="padding: 30px;">
+                            <input type="button" class="btn_all btn btn-primary" value="All Message" style="width: 100%; height: 80px;" onclick="allMessage('#NOKIA', 'NO', 'allNO', 'nokia')">
+                        </div>
+                    </div>
+                    <div class="panel-collapse1 collapse1" style="background-color: #558994; text-align: center;">
+                        <input type="button" class="btn btn-info btn-sm" value="Home" style="width: 100%; font-size: 15px;" onclick="showHome('#NOKIA')">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="IPHONE">
+        <div class="row">
+            <div class="toggleSwitch col-md-6">
+                <div style="float: left;">
+                    <p style="margin-left: -15px;">
+                        <input id="togglePowerIP" type="checkbox" onclick="switchPowerIP();"/>
+                        <label class="label" for="togglePowerIP">
+                            <span id="switchPowerIP"></span>
+                        </label>
+                    </p>
+                </div>
+                <div style="float: left; margin-left: 10px; margin-top: -4px;">
+                    <b>POWER</b>
+                </div>
+            </div>
+            <div class="toggleSwitch col-md-6">
+                <div style="float: right;">
+                    <p>
+                        <input id="toggleChargeIP" type="checkbox" onclick="switchChargeIP();"/>
+                        <label class="label" for="toggleChargeIP">
+                            <span id="switchChargeIP"></span>
+                        </label>
+                    </p>
+                </div>
+                <div style="float: right; margin-left: 10px; margin-top: -4px;">
+                    <b>CHARGE</b>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading" style="height: 41px;">
+                        <div class="col-md-5">
+                            <span class="glyphicon glyphicon-comment" style="margin-left: -15px;"></span> iPhone
+                        </div>
+                        <div class="col-md-5 card">
+                            <img id="messRefresh" src="message.png">
+                            <img id="messRefresh" src="message2.png" class="img-top" onclick="inbox('#IPHONE', 'IP', 'inboxIP', 'nokia', 'iphone')">
+                        </div>
+                        <div class="pull-right">
+                            <img src="battery.png"><span id="batteryIP"></span>
+                        </div>
+                    </div>
+                    <div class="panel-collapse collapse div_compose">
+                        <div class="panel-body" style="height: 250px;">
+                            <ul class="composeIP chat">
+                            </ul>
+                        </div>
+                        <div class="panel-footer">
+                            <div class="row">
+                                <div class="col-md-12 ">
+                                    <div class="input-group">
+                                        <input id="inputIP" type="text" class="form-control input-sm" placeholder="Type your message here..." onchange="setDraftiPhone()">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-warning btn-sm" onclick="chatIP(); inputIP.value = null;">Send</button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-collapse1 collapse1 div_inbox" style="height: 301px;">
+                        <div class="panel-body">
+                            <ul class="inboxIP chat">
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="panel-collapse1 collapse1 div_sent" style="height: 301px;">
+                        <div class="panel-body">
+                            <ul class="sentIP chat">
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="panel-collapse1 collapse1 div_allMessage" style="height: 301px;">
+                        <div class="panel-body">
+                            <ul class="allIP chat">
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="panel-collapse1 collapse1 homeMenu" style="width: 100%; height: 301px;">
+                        <div class="col-md-6" style="padding: 30px;">
+                            <input type="button" class="btn_compose btn btn-warning" value="Compose Message" style="width: 100%; height: 80px;" onclick="show_ComposeIP()">    
+                        </div>
+                        <div class="col-md-6" style="padding: 30px;">
+                            <input type="button" class="btn_inbox btn btn-info" value="Inbox Message" style="width: 100%; height: 80px;" onclick="inbox('#IPHONE', 'IP', 'inboxIP', 'nokia', 'iphone')">
+                        </div>
+                        <div class="col-md-6" style="padding: 30px;">
+                            <input type="button" class="btn_sent btn btn-success" value="Sent Message" style="width: 100%; height: 80px;" onclick="sent('#IPHONE', 'IP', 'sentIP', 'iphone', 'nokia')">
+                        </div>
+                        <div class="col-md-6" style="padding: 30px;">
+                            <input type="button" class="btn_all btn btn-primary" value="All Message" style="width: 100%; height: 80px;" onclick="allMessage('#IPHONE', 'IP', 'allIP', 'iphone')">
+                        </div>
+                    </div>
+                    <div class="panel-collapse1 collapse1" style="background-color: #558994; text-align: center;">
+                        <input type="button" class="btn btn-info btn-sm" value="Home" style="width: 100%; font-size: 15px;" onclick="showHome('#IPHONE')">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script type="text/javascript" src="script.js"></script>
+</body>
+</html>
