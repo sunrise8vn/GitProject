@@ -90,6 +90,7 @@ function createBox(c, i, left, top) {
 	node.classList.add(c);
 	node.style.cssText = 'position: absolute; left:' + left + 'px; top:' + top + 'px;';
 	node.id = i;
+	// node.innerHTML = num;
 	document.getElementById("apple").appendChild(node);
 }
 
@@ -105,7 +106,7 @@ $(function () {
     let xEva = -10;
     let updown = 10;
     let heightAdam = $("#adam img").height();
-    let heightEva = $("#eva img").width();
+    let heightEva = $("#eva img").height();
     $("#adam img").droppable({
         drop: function (event, ui) {
         	apple.decreaseWeight();

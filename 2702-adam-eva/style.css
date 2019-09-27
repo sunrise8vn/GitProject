@@ -43,7 +43,7 @@
 	height: 230px;
 }
 
-#adaminfo {
+#adam-info {
 	position: relative;;
 	margin-top: -350px;
 	margin-left: 50px;
@@ -55,7 +55,7 @@ p {
 	font-size: 20px;
 }
 
-#evainfo {
+#eva-info {
 	position: relative;;
 	margin-top: -350px;
 	margin-left: -50px;
@@ -70,6 +70,12 @@ p {
 	background-repeat: no-repeat;
 	width: 32px;
 	height: 36px;
+  text-align: center;
+  vertical-align: middle;
+  display: table-cell;
+  color: white;
+  padding-top: 10px;
+  cursor: pointer;
 }
 
 
