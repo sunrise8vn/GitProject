@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script>
+    var zipcode = "03201 - 2150";
+    console.log(is_usZipCode(zipcode));
+    zipcode = "78925-346";
+    console.log(is_usZipCode(zipcode));
+
+    function is_usZipCode(str) {
+    	regexp = /^[0-9]{5}(?:-[0-9]{4})?$/;
+    	if (regexp.test(str)) {
+    		return true;
+    	} 
+    	return false;
+    }
+    </script>
+
+</body>
+</html>
