@@ -1,8 +1,7 @@
 class Mobile {
-	constructor(name, battery, storingMess, Mess, state, draftMessages) {
+	constructor(name, battery, Mess, state, draftMessages) {
 		this.name = name;
 		this.battery = battery;	
-		this.storingMess = storingMess;
 		this.Mess = Mess;
 		this.state = state;
 		this.draftMessages = draftMessages;
@@ -17,17 +16,6 @@ class Mobile {
 	getBattery() {
 		return this.battery;
 	}
-
-	// setPowerBattery() {
-	// 	if (this.battery <= 0){
-	// 		this.battery = 0;
-	// 		this.state = false;
-	// 	}
-	// 	else {
-	// 		this.state = true;
-	// 		this.battery -= 1;
-	// 	}
-	// }
 
 	setChargeBattery() {
 		if (this.battery >= 100){
@@ -60,27 +48,28 @@ class Mobile {
 	getState() {
 		return this.state;
 	}
-
-	// getInboxMess() {
-	// 	return this.Mess;
-	// }
 }
 
 var inputNO = document.getElementById('inputNO');
 var inputIP = document.getElementById('inputIP');
 
 var Mess = [];
-var messNokia = [];
 
 var nokia = new Mobile();
 var iphone = new Mobile();
 
 nokia.name = "nokia";
-nokia.battery = 5;
+nokia.battery = 60;
+document.getElementById('batteryNO').innerHTML = " " + nokia.getBattery() + "%";
+$("#NOKIA .charging").css("display", 'none');
+setBatterColor(nokia, "#NOKIA");
 nokia.setState(false);
 
 iphone.name = "iphone";
-iphone.battery = 5;
+iphone.battery = 25;
+document.getElementById('batteryIP').innerHTML = " " + iphone.getBattery() + "%";
+$("#IPHONE .charging").css("display", 'none');
+setBatterColor(iphone, "#IPHONE");
 iphone.setState(false);
 
 var chargeNokia = false;
@@ -134,9 +123,9 @@ function chatIP() {
 
 function getToday() {
 	var today = new Date();
-	var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+	var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
 	var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-	return date+' '+time;
+	return date + ' ' + time;
 }
 
 function setSendMess(id, sender, receiver, content) {
@@ -153,7 +142,7 @@ function setSendMess(id, sender, receiver, content) {
 
 
 function inbox(idElement, deviceName, classElement, sender, receiver) {
-	show_inbox(idElement);
+	showInbox(idElement);
 
 	var eName = $(idElement).find("." + classElement);
 	eName.html("");
@@ -177,7 +166,7 @@ function inbox(idElement, deviceName, classElement, sender, receiver) {
 }
 
 function sent(idElement, deviceName, classElement, sender, receiver) {
-	show_sent(idElement);
+	showSent(idElement);
 
 	var eName = $(idElement).find("." + classElement);
 	eName.html("");
@@ -201,7 +190,7 @@ function sent(idElement, deviceName, classElement, sender, receiver) {
 }
 
 function allMessage(idElement, deviceName, classElement, sender) {
-	show_all(idElement);
+	showAll(idElement);
 
 	var eName = $(idElement).find("." + classElement);
 	eName.html("");
@@ -260,7 +249,7 @@ function turnPowerNO(){
 			nokia.state = true;
 			nokia.battery -= 1;
 		}
-		// nokia.setPowerBattery();
+		setBatterColor(nokia, "#NOKIA");
 		document.getElementById('batteryNO').innerHTML = " " + nokia.getBattery() + "%";
 	}, 1500);
 }
@@ -279,7 +268,7 @@ function turnPowerIP(){
 			iphone.state = true;
 			iphone.battery -= 1;
 		}
-		// iphone.setPowerBattery();
+		setBatterColor(iphone, "#IPHONE");
 		document.getElementById('batteryIP').innerHTML = " " + iphone.getBattery() + "%";
 	}, 1500);
 }
@@ -333,10 +322,15 @@ function switchChargeNO() {
 		document.getElementById('toggleChargeNO').checked;
 		chargeNokia = true;
 		turnChargeNO();
+		$("#NOKIA .charged").css("display", 'none');
+		$("#NOKIA .charging").css("display", 'block');
 	}
 	else {
 		chargeNokia = false;
 		clearInterval(onChargeNO);
+		$("#NOKIA .charged").css("display", 'block');
+		$("#NOKIA .charging").css("display", 'none');
+		setBatterColor(nokia, "#NOKIA");
 	}
 }
 
@@ -345,57 +339,110 @@ function switchChargeIP() {
 		document.getElementById('toggleChargeIP').checked;
 		chargeiPhone = true;
 		turnChargeIP();
+		$("#IPHONE .charged").css("display", 'none');
+		$("#IPHONE .charging").css("display", 'block');
 	}
 	else {
 		chargeiPhone = false;
 		clearInterval(onChargeIP);
+		$("#IPHONE .charged").css("display", 'block');
+		$("#IPHONE .charging").css("display", 'none');
+		setBatterColor(iphone, "#IPHONE");
 	}
 }
 
 function showHome(id){
-	$(id + " .homeMenu").css("display", 'block');
-	$(id + " .div_compose").css("display", 'none');
-	$(id + " .div_inbox").css("display", 'none');
-	$(id + " .div_sent").css("display", 'none');
-	$(id + " .div_allMessage").css("display", 'none');
+	$(id + " .home-menu").css("display", 'block');
+	$(id + " .div-compose").css("display", 'none');
+	$(id + " .div-inbox").css("display", 'none');
+	$(id + " .div-sent").css("display", 'none');
+	$(id + " .div-all").css("display", 'none');
 	$(id + " .card").css("visibility", 'hidden');
 }
 
-function show_Compose() {
-	$("#NOKIA .div_compose").css("display", 'block');
+function showComposeNO() {
+	$("#NOKIA .div-compose").css("display", 'block');
 	$("#NOKIA .composeNO").html("");
 	inputNO.value = nokia.getDraft();
-	$("#NOKIA .homeMenu").css("display", 'none');
+	$("#NOKIA .home-menu").css("display", 'none');
 	$("#NOKIA .card").css("visibility", 'hidden');
 }
 
-function show_ComposeIP() {
-	$("#IPHONE .div_compose").css("display", 'block');
+function showComposeIP() {
+	$("#IPHONE .div-compose").css("display", 'block');
 	$("#IPHONE .composeIP").html("");
 	inputIP.value = iphone.getDraft();
-	$("#IPHONE .homeMenu").css("display", 'none');
+	$("#IPHONE .home-menu").css("display", 'none');
 	$("#IPHONE .card").css("visibility", 'hidden');
 }
 
-function show_inbox(id) {
-	$(id + " .div_inbox").css("display", 'block');
-	$(id + " .homeMenu").css("display", 'none');
+function showInbox(id) {
+	$(id + " .div-inbox").css("display", 'block');
+	$(id + " .home-menu").css("display", 'none');
 	$(id + " .card").css("visibility", 'visible');
 }
 
-function show_sent(id) {
-	$(id + " .div_sent").css("display", 'block');
-	$(id + " .homeMenu").css("display", 'none');
+function showSent(id) {
+	$(id + " .div-sent").css("display", 'block');
+	$(id + " .home-menu").css("display", 'none');
 }
 
-function show_all(id) {
-	$(id + " .div_allMessage").css("display", 'block');
-	$(id + " .homeMenu").css("display", 'none');
+function showAll(id) {
+	$(id + " .div-all").css("display", 'block');
+	$(id + " .home-menu").css("display", 'none');
 }
 
 function disableScreen(id, b) {
-	$(id + " .btn_compose").attr("disabled", b);
-	$(id + " .btn_inbox").attr("disabled", b);
-	$(id + " .btn_sent").attr("disabled", b);
-	$(id + " .btn_all").attr("disabled", b);
+	$(id + " .btn-compose").attr("disabled", b);
+	$(id + " .btn-inbox").attr("disabled", b);
+	$(id + " .btn-sent").attr("disabled", b);
+	$(id + " .btn-all").attr("disabled", b);
+}
+
+function setBatterColor(deviceName, id) {
+	if (deviceName.getBattery() <= 20) {
+		$(id + " .charged").css("background-color", "red");
+	}
+	else {
+		$(id + " .charged").css("background-color", "#43c743");	
+	}
+	let perc = deviceName.getBattery() * 27 / 100;
+	$(id + " .charged").css("width", perc);
+}
+
+$(function() {
+	$("#iphone-draggable").draggable({ axis: "y" });
+	$("#iphone-draggable").draggable({ revert: true });
+	$("#iphone-draggable").draggable({
+		drag: function(){
+        },
+        stop: function() {
+        	// coordinates('#draggable-iphone');
+        	let top = $("#iphone-draggable").position().top;
+        	if (top >= 50) {
+        		inbox('#IPHONE', 'IP', 'inboxIP', 'nokia', 'iphone');
+        	}
+		}
+	});
+
+	$("#nokia-draggable").draggable({ axis: "y" });
+	$("#nokia-draggable").draggable({ revert: true });
+	$("#nokia-draggable").draggable({
+		drag: function(){
+        },
+        stop: function() {
+			let top = $("#nokia-draggable").position().top;
+        	if (top >= 50) {
+        		inbox('#NOKIA', 'NO', 'inboxNO', 'iphone', 'nokia');
+        	}
+		}
+	});
+} );
+
+var coordinates = function(element) {
+    element = $(element);
+    let top = element.position().top;
+    if (top >= 50) {
+    	inbox('#IPHONE', 'IP', 'inboxIP', 'nokia', 'iphone');
+    }
 }

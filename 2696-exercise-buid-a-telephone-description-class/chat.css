@@ -55,7 +55,7 @@ body {
 .panel-body
 {
     overflow-y: scroll;
-    height: 301px;
+    height: 351px;
 }
 
 .panel-primary {
@@ -152,4 +152,19 @@ body {
 }
 .card:hover .img-top {
   display: inline;
+}
+
+.div-compose, .div-inbox, .div-sent, .div-all {
+  height: 351px;
+}
+#NOKIA .div-compose .panel-body, #IPHONE .div-compose .panel-body {
+  height: 301px;
+}
+.home-menu {
+  height: 351px;
+  width: 100%;
+}
+
+#nokia-draggable, #iphone-draggable {
+  cursor: pointer;
 }

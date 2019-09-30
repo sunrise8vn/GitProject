@@ -4,8 +4,10 @@
     <title></title>
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" type="text/css" href="chat.css">
-    <!-- <script src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
-    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="battery.css">
+    <!-- <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     
 </head>
 <body>
@@ -47,16 +49,22 @@
                         <div class="col-md-5">
                             <span class="glyphicon glyphicon-comment" style="margin-left: -15px;"></span> Nokia
                         </div>
-                        <div class="col-md-5 card">
-                            <img id="messRefresh" src="message.png">
-                            <img id="messRefresh" src="message2.png" class="img-top" onclick="inbox('#NOKIA', 'NO', 'inboxNO', 'iphone', 'nokia')">
-                        </div>
                         <div class="pull-right">
-                            <img src="battery.png"><span id="batteryNO"></span>
+                            <div class="battery">
+                                <div class="top"></div>
+                                <div class="charged" style="height: 8px;"></div>
+                                <div class="charging">
+                                    <div class="charge1"></div>
+                                    <div class="charge2"></div>
+                                    <div class="charge3"></div>
+                                    <div class="charge4"></div>
+                                </div>
+                            </div>
+                            <span id="batteryNO"></span>
                         </div>
                     </div>
-                    <div class="panel-collapse collapse div_compose">
-                        <div class="panel-body" style="height: 250px;">
+                    <div class="panel-collapse collapse div-compose">
+                        <div class="panel-body">
                             <ul class="composeNO chat">
                             </ul>
                         </div>
@@ -73,39 +81,39 @@
                             </div>
                         </div>
                     </div>
-                    <div class="panel-collapse1 collapse1 div_inbox" style="height: 301px;">
+                    <div class="div-inbox">
                         <div class="panel-body">
-                            <ul class="inboxNO chat">
+                            <ul id="nokia-draggable" class="inboxNO chat">
                             </ul>
                         </div>
                     </div>
-                    <div class="panel-collapse1 collapse1 div_sent" style="height: 301px;">
+                    <div class="div-sent">
                         <div class="panel-body">
                             <ul class="sentNO chat">
                             </ul>
                         </div>
                     </div>
-                    <div class="panel-collapse1 collapse1 div_allMessage" style="height: 301px;">
+                    <div class="div-all">
                         <div class="panel-body">
                             <ul class="allNO chat">
                             </ul>
                         </div>
                     </div>
-                    <div class="panel-collapse1 collapse1 homeMenu" style="width: 100%; height: 301px;">
+                    <div class="home-menu">
                         <div class="col-md-6" style="padding: 30px;">
-                            <input type="button" class="btn_compose btn btn-warning" value="Compose Message" style="width: 100%; height: 80px;" onclick="show_Compose()">    
+                            <input type="button" class="btn-compose btn btn-warning" value="Compose Message" style="width: 100%; height: 80px;" onclick="showComposeNO()">    
                         </div>
                         <div class="col-md-6" style="padding: 30px;">
-                            <input type="button" class="btn_inbox btn btn-info" value="Inbox Message" style="width: 100%; height: 80px;" onclick="inbox('#NOKIA', 'NO', 'inboxNO', 'iphone', 'nokia')">
+                            <input type="button" class="btn-inbox btn btn-info" value="Inbox Message" style="width: 100%; height: 80px;" onclick="inbox('#NOKIA', 'NO', 'inboxNO', 'iphone', 'nokia')">
                         </div>
                         <div class="col-md-6" style="padding: 30px;">
-                            <input type="button" class="btn_sent btn btn-success" value="Sent Message" style="width: 100%; height: 80px;" onclick="sent('#NOKIA', 'NO', 'sentNO', 'nokia', 'iphone')">
+                            <input type="button" class="btn-sent btn btn-success" value="Sent Message" style="width: 100%; height: 80px;" onclick="sent('#NOKIA', 'NO', 'sentNO', 'nokia', 'iphone')">
                         </div>
                         <div class="col-md-6" style="padding: 30px;">
-                            <input type="button" class="btn_all btn btn-primary" value="All Message" style="width: 100%; height: 80px;" onclick="allMessage('#NOKIA', 'NO', 'allNO', 'nokia')">
+                            <input type="button" class="btn-all btn btn-primary" value="All Message" style="width: 100%; height: 80px;" onclick="allMessage('#NOKIA', 'NO', 'allNO', 'nokia')">
                         </div>
                     </div>
-                    <div class="panel-collapse1 collapse1" style="background-color: #558994; text-align: center;">
+                    <div style="background-color: #558994; text-align: center;">
                         <input type="button" class="btn btn-info btn-sm" value="Home" style="width: 100%; font-size: 15px;" onclick="showHome('#NOKIA')">
                     </div>
                 </div>
@@ -149,16 +157,22 @@
                         <div class="col-md-5">
                             <span class="glyphicon glyphicon-comment" style="margin-left: -15px;"></span> iPhone
                         </div>
-                        <div class="col-md-5 card">
-                            <img id="messRefresh" src="message.png">
-                            <img id="messRefresh" src="message2.png" class="img-top" onclick="inbox('#IPHONE', 'IP', 'inboxIP', 'nokia', 'iphone')">
-                        </div>
                         <div class="pull-right">
-                            <img src="battery.png"><span id="batteryIP"></span>
+                            <div class="battery">
+                                <div class="top"></div>
+                                <div class="charged" style="height: 8px;"></div>
+                                <div class="charging">
+                                    <div class="charge1"></div>
+                                    <div class="charge2"></div>
+                                    <div class="charge3"></div>
+                                    <div class="charge4"></div>
+                                </div>
+                            </div>
+                            <span id="batteryIP"></span>
                         </div>
                     </div>
-                    <div class="panel-collapse collapse div_compose">
-                        <div class="panel-body" style="height: 250px;">
+                    <div class="panel-collapse collapse div-compose">
+                        <div class="panel-body">
                             <ul class="composeIP chat">
                             </ul>
                         </div>
@@ -175,39 +189,40 @@
                             </div>
                         </div>
                     </div>
-                    <div class="panel-collapse1 collapse1 div_inbox" style="height: 301px;">
+                    <div class="div-inbox">
                         <div class="panel-body">
-                            <ul class="inboxIP chat">
+                            <!-- <div class="droppable" style="width: 60%; height: 100px; position: absolute; margin-top: -30px;">Drag down</div> -->
+                            <ul id="iphone-draggable" class="inboxIP chat">
                             </ul>
                         </div>
                     </div>
-                    <div class="panel-collapse1 collapse1 div_sent" style="height: 301px;">
+                    <div class="div-sent">
                         <div class="panel-body">
                             <ul class="sentIP chat">
                             </ul>
                         </div>
                     </div>
-                    <div class="panel-collapse1 collapse1 div_allMessage" style="height: 301px;">
+                    <div class="div-all">
                         <div class="panel-body">
                             <ul class="allIP chat">
                             </ul>
                         </div>
                     </div>
-                    <div class="panel-collapse1 collapse1 homeMenu" style="width: 100%; height: 301px;">
+                    <div class="home-menu">
                         <div class="col-md-6" style="padding: 30px;">
-                            <input type="button" class="btn_compose btn btn-warning" value="Compose Message" style="width: 100%; height: 80px;" onclick="show_ComposeIP()">    
+                            <input type="button" class="btn-compose btn btn-warning" value="Compose Message" style="width: 100%; height: 80px;" onclick="showComposeIP()">    
                         </div>
                         <div class="col-md-6" style="padding: 30px;">
-                            <input type="button" class="btn_inbox btn btn-info" value="Inbox Message" style="width: 100%; height: 80px;" onclick="inbox('#IPHONE', 'IP', 'inboxIP', 'nokia', 'iphone')">
+                            <input type="button" class="btn-inbox btn btn-info" value="Inbox Message" style="width: 100%; height: 80px;" onclick="inbox('#IPHONE', 'IP', 'inboxIP', 'nokia', 'iphone')">
                         </div>
                         <div class="col-md-6" style="padding: 30px;">
-                            <input type="button" class="btn_sent btn btn-success" value="Sent Message" style="width: 100%; height: 80px;" onclick="sent('#IPHONE', 'IP', 'sentIP', 'iphone', 'nokia')">
+                            <input type="button" class="btn-sent btn btn-success" value="Sent Message" style="width: 100%; height: 80px;" onclick="sent('#IPHONE', 'IP', 'sentIP', 'iphone', 'nokia')">
                         </div>
                         <div class="col-md-6" style="padding: 30px;">
-                            <input type="button" class="btn_all btn btn-primary" value="All Message" style="width: 100%; height: 80px;" onclick="allMessage('#IPHONE', 'IP', 'allIP', 'iphone')">
+                            <input type="button" class="btn-all btn btn-primary" value="All Message" style="width: 100%; height: 80px;" onclick="allMessage('#IPHONE', 'IP', 'allIP', 'iphone')">
                         </div>
                     </div>
-                    <div class="panel-collapse1 collapse1" style="background-color: #558994; text-align: center;">
+                    <div style="background-color: #558994; text-align: center;">
                         <input type="button" class="btn btn-info btn-sm" value="Home" style="width: 100%; font-size: 15px;" onclick="showHome('#IPHONE')">
                     </div>
                 </div>
