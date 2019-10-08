@@ -1,0 +1,54 @@
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+ 
+function loadXmlDoc()
+{
+    return $.ajax({
+        type: "GET",
+        url: "books.xml",
+        dataType: "xml",
+        async: false
+    }).responseXML;
+}
+ 
+$(function()
+{
+    var xmlDoc=loadXmlDoc();
+    var select=$("#bookSelect");
+    $(xmlDoc).find("book").each(function()
+    {
+        var title=$(this).find("title").text();
+        var id=$(this).attr("id");
+        select.append("<option value='"+id+"'>"+title+"</option>");
+    });
+ 
+    var ul=$("#infoList");
+    select.change(function()
+    {
+        ul.html("");
+        var book=$("book[id='"+this.value+"']",xmlDoc);
+        ul.append("<li><b>id</b>="+book.attr("id")+"</li>");
+        book.children().each(function()
+        {
+            var li="<li><b>"+this.nodeName+"</b>="+$(this).text()+"</li>";
+            ul.append(li);
+        });
+    });
+});
+ 
+</script>
+</head>
+<body>
+    Title:
+    <select id="bookSelect" style="width:200px"></select>
+    <p>
+    Details:
+    </p>
+    <div style="width:500px; height:250px; border:1px solid black">
+        <ul id="infoList"></ul>
+    </div>
+</body>
+</html>

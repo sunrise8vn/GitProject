@@ -5,7 +5,8 @@
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" type="text/css" href="chat.css">
     <link rel="stylesheet" type="text/css" href="battery.css">
-    <!-- <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script> -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     
@@ -72,9 +73,9 @@
                             <div class="row">
                                 <div class="col-md-12 ">
                                     <div class="input-group">
-                                        <input id="inputNO" type="text" class="form-control input-sm" placeholder="Type your message here..." onchange="setDraftNokia()">
+                                        <input id="txtNO" type="text" class="form-control input-sm" placeholder="Type your message here..." onchange="setDraftNokia()">
                                         <span class="input-group-btn">
-                                            <button class="btn btn-warning btn-sm" onclick="chatNO(); inputNO.value = null;">Send</button>
+                                            <button class="btn btn-warning btn-sm" onclick="chatNO(); txtNO.value = null;">Send</button>
                                         </span>
                                     </div>
                                 </div>
@@ -82,7 +83,7 @@
                         </div>
                     </div>
                     <div class="div-inbox">
-                        <div class="panel-body">
+                        <div class="panel-body w3-animate-zoom">
                             <ul id="nokia-draggable" class="inboxNO chat">
                             </ul>
                         </div>
@@ -180,9 +181,10 @@
                             <div class="row">
                                 <div class="col-md-12 ">
                                     <div class="input-group">
-                                        <input id="inputIP" type="text" class="form-control input-sm" placeholder="Type your message here..." onchange="setDraftiPhone()">
+                                        <!-- <input id="txtIP" type="text" class="form-control input-sm" placeholder="Type your message here..." onchange="setDraftiPhone()"> -->
+                                        <textarea id="txtIP" style="resize:none" rows="1" class="form-control input-sm" placeholder="Type your message here..." hidden="abc"></textarea>
                                         <span class="input-group-btn">
-                                            <button class="btn btn-warning btn-sm" onclick="chatIP(); inputIP.value = null;">Send</button>
+                                            <button class="btn btn-warning btn-sm" onclick="chatIP(); txtIP.value = null;">Send</button>
                                         </span>
                                     </div>
                                 </div>
@@ -190,7 +192,7 @@
                         </div>
                     </div>
                     <div class="div-inbox">
-                        <div class="panel-body">
+                        <div class="panel-body ">
                             <!-- <div class="droppable" style="width: 60%; height: 100px; position: absolute; margin-top: -30px;">Drag down</div> -->
                             <ul id="iphone-draggable" class="inboxIP chat">
                             </ul>
@@ -232,5 +234,6 @@
 </div>
 
     <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript" src="ajax.js"></script>
 </body>
 </html>

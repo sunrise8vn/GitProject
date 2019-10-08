@@ -50,8 +50,8 @@ class Mobile {
 	}
 }
 
-var inputNO = document.getElementById('inputNO');
-var inputIP = document.getElementById('inputIP');
+var txtNO = document.getElementById('txtNO');
+var txtIP = document.getElementById('txtIP');
 
 var Mess = [];
 
@@ -80,11 +80,10 @@ showHome('#IPHONE')
 disableScreen("#NOKIA", true);
 disableScreen("#IPHONE", true);
 
-
 function chatNO() {
 	var count = Mess.length + 1;
-	if(nokia.getState() == true && inputNO.value.trim().length > 0){
-		setSendMess(count, nokia.name, iphone.name, inputNO.value);	
+	if(nokia.getState() == true && txtNO.value.trim().length > 0){
+		setSendMess(count, nokia.name, iphone.name, txtNO.value);	
 		nokia.resetDraft();
 		var text1 = "";
 		text1 += "<li class='left clearfix'>";
@@ -96,15 +95,15 @@ function chatNO() {
 		text1 += "<strong class='primary-font'>" + iphone.name + "</strong>";
 		text1 += "<small class='pull-right text-muted'><span class='glyphicon glyphicon-time'></span>" + getToday() + "</small>"
 		text1 += "</div>";
-		text1 += "<p>" + inputNO.value + "</p>";
+		text1 += "<p>" + txtNO.value + "</p>";
 		$("#NOKIA .composeNO").append(text1);
 	}
 }
 
 function chatIP() {
 	var count = Mess.length + 1;
-	if(iphone.getState() == true && inputIP.value.trim().length > 0){
-		setSendMess(count, iphone.name, nokia.name, inputIP.value);
+	if(iphone.getState() == true && txtIP.value.trim().length > 0){
+		setSendMess(count, iphone.name, nokia.name, txtIP.value);
 		iphone.resetDraft();
 		var text1 = "";
 		text1 += "<li class='left clearfix'>";
@@ -116,7 +115,7 @@ function chatIP() {
 		text1 += "<strong class='primary-font'>" + nokia.name + "</strong>";
 		text1 += "<small class='pull-right text-muted'><span class='glyphicon glyphicon-time'></span>" + getToday() + "</small>"
 		text1 += "</div>";
-		text1 += "<p>" + inputIP.value + "</p>";
+		text1 += "<p>" + txtIP.value + "</p>";
 		$("#IPHONE .composeIP").append(text1);
 	}
 }
@@ -151,7 +150,7 @@ function inbox(idElement, deviceName, classElement, sender, receiver) {
 
 	for(let i = 0; i < ib.length; i++){
 		var text1 = "";
-		text1 += "<li class='right clearfix'>";
+		text1 += "<li class='right clearfix  w3-animate-zoom mess'>";
 		text1 += "<span class='chat-img pull-right'>";
 		text1 += "<img src='http://placehold.it/50/FA6F57/fff&text=" + deviceName + "' alt='User Avatar' class='img-circle' />";
 		text1 += "</span>";
@@ -228,11 +227,11 @@ function allMessage(idElement, deviceName, classElement, sender) {
 }
 
 function setDraftNokia() {
-	nokia.setDraft(inputNO.value);
+	nokia.setDraft(txtNO.value);
 }
 
 function setDraftiPhone() {
-	iphone.setDraft(inputIP.value);
+	iphone.setDraft(txtIP.value);
 }
 
 function turnPowerNO(){
@@ -363,7 +362,7 @@ function showHome(id){
 function showComposeNO() {
 	$("#NOKIA .div-compose").css("display", 'block');
 	$("#NOKIA .composeNO").html("");
-	inputNO.value = nokia.getDraft();
+	txtNO.value = nokia.getDraft();
 	$("#NOKIA .home-menu").css("display", 'none');
 	$("#NOKIA .card").css("visibility", 'hidden');
 }
@@ -371,7 +370,7 @@ function showComposeNO() {
 function showComposeIP() {
 	$("#IPHONE .div-compose").css("display", 'block');
 	$("#IPHONE .composeIP").html("");
-	inputIP.value = iphone.getDraft();
+	// txtIP.value = iphone.getDraft();
 	$("#IPHONE .home-menu").css("display", 'none');
 	$("#IPHONE .card").css("visibility", 'hidden');
 }
@@ -439,10 +438,10 @@ $(function() {
 	});
 } );
 
-var coordinates = function(element) {
-    element = $(element);
-    let top = element.position().top;
-    if (top >= 50) {
-    	inbox('#IPHONE', 'IP', 'inboxIP', 'nokia', 'iphone');
-    }
-}
+// var coordinates = function(element) {
+//     element = $(element);
+//     let top = element.position().top;
+//     if (top >= 50) {
+//     	inbox('#IPHONE', 'IP', 'inboxIP', 'nokia', 'iphone');
+//     }
+// }
