@@ -37,32 +37,29 @@ class Mobile {
 	}
 
 	setMess(id, sender, receiver, content, date) {
-		// function add(arr) {
-			const found = this.archiveMess.some(el => el.id === id);
-			if (!found) {
-				this.archiveMess.push({
-					id : id,
-					sender : sender,
-					receiver : receiver,
-					content : content,
-					date: date, 
-					status: 0
-				});
-				this.newMess.push({
-					id : id,
-					sender : sender,
-					receiver : receiver,
-					content : content,
-					date: date, 
-					status: 0
-				});
-			// } 
+		const found = this.archiveMess.some(el => el.id === id);
+		if (!found) {
+			this.archiveMess.push({
+				id : id,
+				sender : sender,
+				receiver : receiver,
+				content : content,
+				date: date, 
+				status: 0
+			});
+			this.newMess.push({
+				id : id,
+				sender : sender,
+				receiver : receiver,
+				content : content,
+				date: date, 
+				status: 0
+			});
 		}
 	}
 
 
 	getArchiveMess() {
-		// return this.archiveMess;
 		let items =  this.archiveMess.filter(function(item) {
 			return item.status === 0;
 		});
@@ -70,7 +67,6 @@ class Mobile {
 	}
 
 	getNewMess(receiver) {
-		// return this.newMess;
 		let items =  this.newMess.filter(function(item) {
 			return item.status === 0 && item.receiver === receiver;
 		});
@@ -78,7 +74,6 @@ class Mobile {
 	}
 
 	getInboxMess(receiver) {
-		// return this.newMess;
 		let items =  this.archiveMess.filter(function(item) {
 			return item.status === 0 && item.receiver === receiver;
 		});
@@ -168,7 +163,6 @@ function chatIP() {
 		setSendMess(count, iphone.name, nokia.name, txtIP.value);
 		iphone.setMess(count, iphone.name, nokia.name, txtIP.value, getToday());
 		iphone.resetDraft();
-		// let element = $('#IPHONE').find(".compose");
 		let text1 = "";
 		text1 += "<li class='left clearfix w3-animate-bottom'>";
 		text1 += "<span class='chat-img pull-left'>";
@@ -180,9 +174,7 @@ function chatIP() {
 		text1 += "<small class='pull-right text-muted' style='float: left;'><span class='glyphicon glyphicon-time'></span>" + getToday() + "</small>"
 		text1 += "</div>";
 		text1 += "<p style='text-align: left;'>" + txtIP.value + "</p>";
-		// element.append(text1);
 		$("#IPHONE .compose").append(text1);
-		// alert('message?: DOMString');
 	}
 }
 
@@ -209,8 +201,6 @@ function setSendMess(id, sender, receiver, content) {
 function getInboxNO(idElement, deviceName, receiver) {
 	showInbox(idElement);
 	
-	// $("#iphone-draggable-home").css("background-color", "#2e2e2f");	
-
 	let element = $(idElement).find(".inbox");
 	// element.html("");
 	this.ib = Mess.filter(x => x.receiver === receiver);
@@ -221,7 +211,6 @@ function getInboxNO(idElement, deviceName, receiver) {
 	}
 
 	this.m = nokia.getNewMess(receiver);
-	// this.m = nokia.getInboxMess(receiver);
 
 	if (m.length > 0) {
 		for (let i = 0; i < m.length; i++) {
@@ -284,7 +273,6 @@ function getInboxIP(idElement, deviceName, receiver) {
 			text1 += "<strong class='primary-font'>" + m[i].sender + "</strong>";
 			text1 += "</div>";
 			text1 += "<p style='text-align: left'>" + m[i].content + "</p>";
-			// element.append(text1);
 			element.prepend(text1);
 		}
 		iphone.clearNewMess();
@@ -597,9 +585,7 @@ function showHomeIP(){
 }
 
 function changeBackgroundColorNO(label) {		
-	// $("#NOKIA .txt-battery").css("color", "#607d8b");
 	$("#NOKIA .nokia-base-change").css("opacity", 0);	
-	// $("#NOKIA .time").css("color", "#607d8b");
 	switch(label) {
 		case 'compose':
 			$("#NOKIA .nokia-base-color").css("background-color", "#fafcff");
@@ -611,18 +597,11 @@ function changeBackgroundColorNO(label) {
 			$("#NOKIA .time").css("color", "#fff");
 			$("#NOKIA .div-inbox").css("color", "#fff");
 			$("#NOKIA .div-inbox .text-muted").css("color", "#fff !important");
-			// $("#NOKIA .img-battery").css("border", "1px solid #9E9E9E");	
-			// $("#NOKIA .top").css("background-color", "#9E9E9E");
-			// $("#NOKIA .txt-battery").css("color", "#607d8b");
-			// $("#NOKIA .time").css("color", "#607d8b");
-			// $("#NOKIA .div-all").css("color", "#000");
-			// $("#NOKIA .div-all .text-muted").css("color", "#000 !important");
 			$("#NOKIA .div-compose").css("color", "#fff");
 			$("#NOKIA .text-muted").css("color", "#fff");
 			$("#NOKIA .charge1, #NOKIA .charge2, #NOKIA .charge3, #NOKIA .charge4").css("background-color", "#52d668");
 			break;
 		case 'inbox':
-			// $("#NOKIA .nokia-base-color").css("background-color", "#cc4477");
 			$("#NOKIA .nokia-base-color").css("background-image", "url(img/no3.jpg)");
 			$("#NOKIA .nokia-base-color").css("opacity", 0.8);
 			$("#NOKIA .img-battery").css("border", "1px solid #fff");
@@ -633,7 +612,6 @@ function changeBackgroundColorNO(label) {
 			$("#NOKIA .div-inbox .text-muted").css("color", "#fff !important");
 			break;
 		case 'all':
-			// $("#NOKIA .nokia-base-color").css("background-color", "#59ca3c");
 			$("#NOKIA .nokia-base-color").css("background-image", "url(img/no2.jpg)");
 			$("#NOKIA .nokia-base-color").css("opacity", 0.6);
 			$("#NOKIA .img-battery").css("border", "1px solid #fff");
@@ -839,7 +817,6 @@ $(function() {
 	$("#iphone-draggable").draggable({ revert: true });
 	$("#iphone-draggable").draggable({
         stop: function() {
-        	// coordinates('#draggable-iphone');
         	let top = $("#iphone-draggable").position().top;
         	if (top >= 20) {
         		showAllMessageIP('#IPHONE', 'IP', 'all', 'iphone');
@@ -860,8 +837,6 @@ $(function() {
 	$("#nokia-draggable").draggable({ axis: "y" });
 	$("#nokia-draggable").draggable({ revert: true });
 	$("#nokia-draggable").draggable({
-		drag: function(){
-        },
         stop: function() {
 			let top = $("#nokia-draggable").position().top;
         	if (top >= 20) {
@@ -870,14 +845,6 @@ $(function() {
 		}
 	});
 } );
-
-// var coordinates = function(element) {
-//     element = $(element);
-//     let top = element.position().top;
-//     if (top >= 50) {
-//     	inbox('#IPHONE', 'IP', 'inboxIP', 'nokia', 'iphone');
-//     }
-// }
 
 $.fn.mouseHold = function(time, callback) {
     var timer;
@@ -901,7 +868,6 @@ $('#iphone-draggable').mouseHold(1000, function() {
 
 function selectAll() {
 	let checkboxes = $("#IPHONE input[name='messAllip[]']");
-    // let checkboxes = document.getElementsByName('messip[]');
     for (let i = 0; i < checkboxes.length; i++){
     	checkboxes[i].checked = true;
     }
@@ -945,10 +911,8 @@ function deleteMessage() {
     showAllMessageIP('#IPHONE', 'IP', 'all', 'iphone');
 }
 
-
 function messChecked() {
 	this.countBoxChecked = $("#IPHONE input[name='messAllip[]']:checked");
-	alert(countBoxChecked.length);
 	if (countBoxChecked.length > 0) {
 		$("#IPHONE .delete-message").css("pointer-events", 'auto');
 		$("#IPHONE .delete-message").css("opacity", 1);
