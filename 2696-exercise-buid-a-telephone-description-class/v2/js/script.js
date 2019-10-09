@@ -6,6 +6,7 @@ class Mobile {
 		this.newMess = [];
 		this.state = state;
 		this.draft = draft;
+		this.deleteMess = 0;
 	}
 
 	setBattery(batt) {
@@ -25,6 +26,14 @@ class Mobile {
 		else{
 			this.battery += 1;
 		}
+	}
+
+	setDeleteMess(d) {
+		this.deleteMess = d;
+	}
+
+	getDeleteMess() {
+		return this.deleteMess;
 	}
 
 	setMess(id, sender, receiver, content, date) {
@@ -54,19 +63,28 @@ class Mobile {
 
 	getArchiveMess() {
 		// return this.archiveMess;
-		var items =  this.archiveMess.filter(function(item) {
-			return item.status == 0;
+		let items =  this.archiveMess.filter(function(item) {
+			return item.status === 0;
 		});
 		return items;
 	}
 
-	getNewMess() {
+	getNewMess(receiver) {
 		// return this.newMess;
-		var items =  this.archiveMess.filter(function(item) {
-			return item.status == 0;
+		let items =  this.newMess.filter(function(item) {
+			return item.status === 0 && item.receiver === receiver;
 		});
 		return items;
 	}
+
+	getInboxMess(receiver) {
+		// return this.newMess;
+		let items =  this.archiveMess.filter(function(item) {
+			return item.status === 0 && item.receiver === receiver;
+		});
+		return items;
+	}
+
 	clearNewMess() {
 		this.newMess = [];
 	}
@@ -130,14 +148,14 @@ function chatNO() {
 		setSendMess(count, nokia.name, iphone.name, txtNO.value);	
 		nokia.resetDraft();
 		let text1 = "";
-		text1 += "<li class='left clearfix'>";
+		text1 += "<li class='left clearfix w3-animate-bottom'>";
 		text1 += "<span class='chat-img pull-left'>";
 		text1 += "<img src='http://placehold.it/50/55C1E7/fff&text=NO' alt='User Avatar' class='img-circle' />";
 		text1 += "</span>";
 		text1 += "<div class='chat-body clearfix'>";
 		text1 += "<div class='header'>";
 		text1 += "<strong class='primary-font'>" + iphone.name + "</strong>";
-		text1 += "<small class='pull-right text-muted'><span class='glyphicon glyphicon-time'></span>" + getToday() + "</small>"
+		text1 += "<small class='pull-right'><span class='glyphicon glyphicon-time'></span>" + getToday() + "</small>"
 		text1 += "</div>";
 		text1 += "<p>" + txtNO.value + "</p>";
 		$("#NOKIA .compose").append(text1);
@@ -152,7 +170,7 @@ function chatIP() {
 		iphone.resetDraft();
 		// let element = $('#IPHONE').find(".compose");
 		let text1 = "";
-		text1 += "<li class='left clearfix'>";
+		text1 += "<li class='left clearfix w3-animate-bottom'>";
 		text1 += "<span class='chat-img pull-left'>";
 		text1 += "<img src='http://placehold.it/50/55C1E7/fff&text=NO' alt='User Avatar' class='img-circle' />";
 		text1 += "</span>";
@@ -188,40 +206,43 @@ function setSendMess(id, sender, receiver, content) {
 }
 
 
-function getInboxNO(idElement, deviceName, sender, receiver) {
+function getInboxNO(idElement, deviceName, receiver) {
 	showInbox(idElement);
-	changeBackgroundColorNO('inbox');	
+	
 	// $("#iphone-draggable-home").css("background-color", "#2e2e2f");	
 
 	let element = $(idElement).find(".inbox");
-	this.ib = Mess.filter(x => x.sender === sender && x.receiver === receiver);
-	// ib.reverse();
+	// element.html("");
+	this.ib = Mess.filter(x => x.receiver === receiver);
+	ib.reverse();
 
 	for(let i = 0; i < ib.length; i++){
 		nokia.setMess(ib[i].id, ib[i].sender, ib[i].receiver, ib[i].content, ib[i].date);
 	}
 
-	this.m = nokia.getNewMess();
+	this.m = nokia.getNewMess(receiver);
+	// this.m = nokia.getInboxMess(receiver);
 
 	if (m.length > 0) {
 		for (let i = 0; i < m.length; i++) {
 			let text1 = "";
-			text1 += "<li class='right clearfix  w3-animate-top mess'>";
+			text1 += "<li id='mess-no" + m[i].id + "' class='right clearfix w3-animate-top mess'>";
 			text1 += "<span class='chat-img pull-right'>";
 			text1 += "<img src='http://placehold.it/50/FA6F57/fff&text=" + deviceName + "' alt='User Avatar' class='img-circle' />";
 			text1 += "</span>";
 			text1 += "<div class='chat-body clearfix'>";
 			text1 += "<div class='divhode' style='width: 30px; line-height: 50px; float: left;'>";
-			text1 += "<input type='checkbox'></div>"
+			text1 += "<input type='checkbox' name='messno[]' value='"+ m[i].id +"'></div>"
 			text1 += "<div class='header'>";
 			text1 += "<small class='pull-left text-muted'><span class='glyphicon glyphicon-time'></span>" + m[i].date + "</small>"
 			text1 += "<strong class='primary-font'>" + m[i].sender + "</strong>";
 			text1 += "</div>";
-			text1 += "<p>" + m[i].content + "</p>";
-			element.append(text1);
+			text1 += "<p style='text-align: left'>" + m[i].content + "</p>";
+			element.prepend(text1);
 		}
 		nokia.clearNewMess();
 	}
+	changeBackgroundColorNO('inbox');
 }
 
 function getInboxIP(idElement, deviceName, receiver) {
@@ -229,6 +250,7 @@ function getInboxIP(idElement, deviceName, receiver) {
 	changeBackgroundColorIP();	
 
 	let element = $(idElement).find(".inbox");
+	
 	this.ib = Mess.filter(x => x.receiver === receiver);
 	ib.reverse();
 
@@ -236,12 +258,21 @@ function getInboxIP(idElement, deviceName, receiver) {
 		iphone.setMess(ib[i].id, ib[i].sender, ib[i].receiver, ib[i].content, ib[i].date);
 	}
 
-	this.m = iphone.getNewMess();
+	this.checkDelete = iphone.getDeleteMess();
+
+	if(checkDelete == 1) {
+		element.empty();
+		this.m = iphone.getInboxMess(receiver);
+		iphone.setDeleteMess(0);
+	}
+	else {
+		this.m = iphone.getNewMess(receiver);	
+	}
 
 	if (m.length > 0) {
 		for (let i = 0; i < m.length; i++) {
 			let text1 = "";
-			text1 += "<li id='mess" + m[i].id + "' class='right clearfix  w3-animate-bottom mess'>";
+			text1 += "<li id='mess-ip" + m[i].id + "' class='right clearfix w3-animate-top mess'>";
 			text1 += "<span class='chat-img pull-right'>";
 			text1 += "<img src='http://placehold.it/50/FA6F57/fff&text=" + deviceName + "' alt='User Avatar' class='img-circle' />";
 			text1 += "</span>";
@@ -259,7 +290,6 @@ function getInboxIP(idElement, deviceName, receiver) {
 		iphone.clearNewMess();
 		cancelIP();
 	}
-
 }
 
 function sent(idElement, deviceName, classElement, sender, receiver) {
@@ -287,43 +317,53 @@ function sent(idElement, deviceName, classElement, sender, receiver) {
 	}
 }
 
-function allMessageNO(idElement, deviceName, classElement, sender) {
+function showAllMessageNO(idElement, deviceName, classElement, sender) {
 	showAll(idElement);
-	changeBackgroundColorNO('all');
-
+	
 	let eName = $(idElement).find("." + classElement);
 	eName.html("");
-	this.ib = Mess.filter(x => (x.sender === sender || x.receiver === sender) && x.status == 0);
+	this.ib = Mess.filter(x => x.sender === sender || x.receiver === sender);
 	ib.reverse();
 
 	for(let i = 0; i < ib.length; i++){
-		let text1 = "";
-		if(this.ib[i].sender == sender) {
-			text1 += "<li class='left clearfix'>";
-			text1 += "<span class='chat-img pull-left'>";
-			text1 += "<img src='http://placehold.it/50/55C1E7/fff&text=" + deviceName + "' alt='User Avatar' class='img-circle' />";
-			text1 += "</span>";
-			text1 += "<div class='chat-body clearfix'>";
-			text1 += "<div class='header'>";
-			text1 += "<strong class='primary-font'>" + this.ib[i].receiver + "</strong>";
-			text1 += "<small class='pull-right text-muted'><span class='glyphicon glyphicon-time'></span>" + this.ib[i].date + "</small>"
-			text1 += "</div>";
-			text1 += "<p>" + this.ib[i].content + "</p>";
-		}
-		else {
-			text1 += "<li class='right clearfix'>";
-			text1 += "<span class='chat-img pull-right'>";
-			text1 += "<img src='http://placehold.it/50/FA6F57/fff&text=" + deviceName + "' alt='User Avatar' class='img-circle' />";
-			text1 += "</span>";
-			text1 += "<div class='chat-body clearfix'>";
-			text1 += "<div class='header'>";
-			text1 += "<small class='pull-left text-muted'><span class='glyphicon glyphicon-time'></span>" + this.ib[i].date + "</small>"
-			text1 += "<strong class='primary-font'>" + this.ib[i].sender + "</strong>";
-			text1 += "</div>";
-			text1 += "<p style='text-align: left'>" + this.ib[i].content + "</p>";
-		}
-		eName.append(text1);
+		nokia.setMess(ib[i].id, ib[i].sender, ib[i].receiver, ib[i].content, ib[i].date);
 	}
+
+	this.newMess = nokia.getArchiveMess();
+
+	if (newMess.length > 0) {
+		for(let i = 0; i < newMess.length; i++){
+			let text1 = "";
+			if(this.newMess[i].sender == sender) {
+				text1 += "<li id='mess-no" + newMess[i].id + "' class='left clearfix w3-animate-top mess'>";
+				text1 += "<span class='chat-img pull-left'>";
+				text1 += "<img src='http://placehold.it/50/55C1E7/fff&text=" + deviceName + "' alt='User Avatar' class='img-circle' />";
+				text1 += "</span>";
+				text1 += "<div class='chat-body clearfix'>";
+				text1 += "<div class='divhode' style='width: 30px; line-height: 50px; float: left;'>";
+				text1 += "<input type='checkbox' name='messno[]' onclick='messChecked();' value='"+ newMess[i].id +"'></div>"
+				text1 += "<div class='header'>";
+				text1 += "<strong class='primary-font'>" + this.newMess[i].receiver + "</strong>";
+				text1 += "<small class='pull-right text-muted'><span class='glyphicon glyphicon-time'></span>" + this.newMess[i].date + "</small>"
+				text1 += "</div>";
+				text1 += "<p>" + this.newMess[i].content + "</p>";
+			}
+			else {
+				text1 += "<li id='mess-no" + newMess[i].id + "' class='right clearfix w3-animate-top mess'>";
+				text1 += "<span class='chat-img pull-right'>";
+				text1 += "<img src='http://placehold.it/50/FA6F57/fff&text=" + deviceName + "' alt='User Avatar' class='img-circle' />";
+				text1 += "</span>";
+				text1 += "<div class='chat-body clearfix'>";
+				text1 += "<div class='header'>";
+				text1 += "<small class='pull-left text-muted'><span class='glyphicon glyphicon-time'></span>" + this.newMess[i].date + "</small>"
+				text1 += "<strong class='primary-font'>" + this.newMess[i].sender + "</strong>";
+				text1 += "</div>";
+				text1 += "<p style='text-align: left'>" + this.newMess[i].content + "</p>";
+			}
+			eName.append(text1);
+		}
+	}
+	changeBackgroundColorNO('all');
 }
 
 function showAllMessageIP(idElement, deviceName, classElement, sender) {
@@ -339,53 +379,50 @@ function showAllMessageIP(idElement, deviceName, classElement, sender) {
 		iphone.setMess(ib[i].id, ib[i].sender, ib[i].receiver, ib[i].content, ib[i].date);
 	}
 
-	this.newMess = iphone.getNewMess();
-
-	// this.newMess = iphone.getArchiveMess();
+	this.newMess = iphone.getArchiveMess();
 
 	if (newMess.length > 0) {
 		for(let i = 0; i < this.newMess.length; i++){
 			let text1 = "";
 			if(this.newMess[i].sender == sender) {
-				text1 += "<li id='mess" + newMess[i].id + "' class='right clearfix mess'>";
+				text1 += "<li id='mess-ip" + newMess[i].id + "' class='right clearfix w3-animate-top mess'>";
 				text1 += "<span class='chat-img pull-right'>";
 				text1 += "<img src='http://placehold.it/50/55C1E7/fff&text=" + newMess[i].receiver.substring(0, 2).toUpperCase() + "' alt='User Avatar' class='img-circle' />";
 				text1 += "</span>";
 				text1 += "<div class='chat-body clearfix'>";
 				text1 += "<div class='divhode' style='width: 30px; line-height: 50px; float: left;'>";
-				text1 += "<input type='checkbox' name='messip[]' value='"+ newMess[i].id +"'></div>"
+				text1 += "<input type='checkbox' name='messAllip[]' onclick='messChecked();' value='"+ newMess[i].id +"'></div>"
 				text1 += "<div class='header'>";
 				text1 += "<small class='pull-left text-muted'><span class='glyphicon glyphicon-time'></span>" + this.newMess[i].date + "</small>"
 				text1 += "<strong class='primary-font'>" + this.newMess[i].receiver + "</strong>";
 				text1 += "</div>";
 				text1 += "<p style='text-align: left'>" + this.newMess[i].content + "</p>";
-				// eName.prepend(text1);
+				eName.prepend(text1);
 			}
 			else {
-				text1 += "<li id='mess" + newMess[i].id + "' class='right clearfix mess'>";
+				text1 += "<li id='mess-ip" + newMess[i].id + "' class='right clearfix w3-animate-top mess'>";
 				text1 += "<span class='chat-img pull-right'>";
 				text1 += "<img src='http://placehold.it/50/FA6F57/fff&text=" + newMess[i].sender.substring(0, 2).toUpperCase() + "' alt='User Avatar' class='img-circle' />";
 				text1 += "</span>";
 				text1 += "<div class='chat-body clearfix'>";
 				text1 += "<div class='divhode' style='width: 30px; line-height: 50px; float: left;'>";
-				text1 += "<input type='checkbox' name='messip[]' value='"+ newMess[i].id +"'></div>"
+				text1 += "<input type='checkbox' name='messAllip[]' onclick='messChecked();' value='"+ newMess[i].id +"'></div>"
 				text1 += "<div class='header'>";
 				text1 += "<small class='pull-left text-muted'><span class='glyphicon glyphicon-time'></span>" + this.newMess[i].date + "</small>"
 				text1 += "<strong class='primary-font'>" + this.newMess[i].sender + "</strong>";
 				text1 += "</div>";
 				text1 += "<p style='text-align: left'>" + this.newMess[i].content + "</p>";
-				// eName.prepend(text1);
+				eName.prepend(text1);
 			}
-			// eName.append(text1);
-			eName.prepend(text1);
 		}
 	}
-	
 }
 
 function editIP() {
 	$("#IPHONE .divhode").css("display", 'block');
 	$("#IPHONE .delete").css("display", 'block');
+	$("#IPHONE .delete-message").css("pointer-events", 'none');
+	$("#IPHONE .delete-message").css("opacity", 0.4);
 	$("#IPHONE .cancel").css("display", 'block');
 }
 
@@ -394,6 +431,8 @@ function cancelIP() {
 	$("#IPHONE .divhode").css("display", 'none');
 	$("#IPHONE .delete").css("display", 'none');
 	$("#IPHONE .cancel").css("display", 'none');
+	$("#IPHONE .delete-message").css("pointer-events", 'none');
+	$("#IPHONE .delete-message").css("opacity", 0.4);
 }
 
 function setDraftNokia() {
@@ -533,7 +572,8 @@ function showHomeNO(){
 	$("#NOKIA .img-battery").css("border", "1px solid #fff");	
 	$("#NOKIA .top").css("background-color", "#fff");	
 	$("#NOKIA .txt-battery").css("color", "#fff");	
-	$("#NOKIA .nokia-base-color").css("opacity", 0);	
+	$("#NOKIA .nokia-base-color").css("opacity", 0);
+	$("#NOKIA .nokia-base-change").css("opacity", 1);		
 	$("#NOKIA .time").css("color", "#fff");	
 	$("#NOKIA .charge1, #NOKIA .charge2, #NOKIA .charge3, #NOKIA .charge4").css("background-color", "#52d668");
 }
@@ -556,25 +596,35 @@ function showHomeIP(){
 	cancelIP();
 }
 
-function changeBackgroundColorNO(label) {
-		
-	
+function changeBackgroundColorNO(label) {		
 	// $("#NOKIA .txt-battery").css("color", "#607d8b");
-	$("#NOKIA .nokia-base-color").css("opacity", 1);	
+	$("#NOKIA .nokia-base-change").css("opacity", 0);	
 	// $("#NOKIA .time").css("color", "#607d8b");
 	switch(label) {
 		case 'compose':
 			$("#NOKIA .nokia-base-color").css("background-color", "#fafcff");
-			$("#NOKIA .img-battery").css("border", "1px solid #9E9E9E");	
-			$("#NOKIA .top").css("background-color", "#9E9E9E");
-			$("#NOKIA .txt-battery").css("color", "#607d8b");
-			$("#NOKIA .time").css("color", "#607d8b");
-			$("#NOKIA .div-all").css("color", "#000");
-			$("#NOKIA .div-all .text-muted").css("color", "#000 !important");
+			$("#NOKIA .nokia-base-color").css("background-image", "url(img/no9.jpg)");
+			$("#NOKIA .nokia-base-color").css("opacity", 0.6);
+			$("#NOKIA .img-battery").css("border", "1px solid #fff");
+			$("#NOKIA .top").css("background-color", "#fff");
+			$("#NOKIA .txt-battery").css("color", "#fff");
+			$("#NOKIA .time").css("color", "#fff");
+			$("#NOKIA .div-inbox").css("color", "#fff");
+			$("#NOKIA .div-inbox .text-muted").css("color", "#fff !important");
+			// $("#NOKIA .img-battery").css("border", "1px solid #9E9E9E");	
+			// $("#NOKIA .top").css("background-color", "#9E9E9E");
+			// $("#NOKIA .txt-battery").css("color", "#607d8b");
+			// $("#NOKIA .time").css("color", "#607d8b");
+			// $("#NOKIA .div-all").css("color", "#000");
+			// $("#NOKIA .div-all .text-muted").css("color", "#000 !important");
+			$("#NOKIA .div-compose").css("color", "#fff");
+			$("#NOKIA .text-muted").css("color", "#fff");
 			$("#NOKIA .charge1, #NOKIA .charge2, #NOKIA .charge3, #NOKIA .charge4").css("background-color", "#52d668");
 			break;
 		case 'inbox':
-			$("#NOKIA .nokia-base-color").css("background-color", "#cc4477");
+			// $("#NOKIA .nokia-base-color").css("background-color", "#cc4477");
+			$("#NOKIA .nokia-base-color").css("background-image", "url(img/no3.jpg)");
+			$("#NOKIA .nokia-base-color").css("opacity", 0.8);
 			$("#NOKIA .img-battery").css("border", "1px solid #fff");
 			$("#NOKIA .top").css("background-color", "#fff");
 			$("#NOKIA .txt-battery").css("color", "#fff");
@@ -583,7 +633,9 @@ function changeBackgroundColorNO(label) {
 			$("#NOKIA .div-inbox .text-muted").css("color", "#fff !important");
 			break;
 		case 'all':
-			$("#NOKIA .nokia-base-color").css("background-color", "#59ca3c");
+			// $("#NOKIA .nokia-base-color").css("background-color", "#59ca3c");
+			$("#NOKIA .nokia-base-color").css("background-image", "url(img/no2.jpg)");
+			$("#NOKIA .nokia-base-color").css("opacity", 0.6);
 			$("#NOKIA .img-battery").css("border", "1px solid #fff");
 			$("#NOKIA .top").css("background-color", "#fff");
 			$("#NOKIA .txt-battery").css("color", "#fff");
@@ -593,7 +645,6 @@ function changeBackgroundColorNO(label) {
 			$("#NOKIA .charge1, #NOKIA .charge2, #NOKIA .charge3, #NOKIA .charge4").css("background-color", "#fff");
 			break;
 	}
-
 }
 
 function changeBackgroundColorIP() {
@@ -623,7 +674,7 @@ function actionClickInboxNO(elementId) {
 	let longpress = false;
 
     $(elementId).on('click', function (e) {
-        (longpress) ?  e.preventDefault() : getInboxNO('#NOKIA', 'NO', 'iphone', 'nokia');
+        (longpress) ?  e.preventDefault() : getInboxNO('#NOKIA', 'NO', 'nokia');
     });
     
     let startTime, endTime;
@@ -649,7 +700,7 @@ function actionClickAllNO(elementId) {
 	let longpress = false;
 
     $(elementId).on('click', function (e) {
-        (longpress) ?  e.preventDefault() : allMessageNO('#NOKIA', 'NO', 'all', 'nokia');
+        (longpress) ?  e.preventDefault() : showAllMessageNO('#NOKIA', 'NO', 'all', 'nokia');
     });
     
     let startTime, endTime;
@@ -792,7 +843,16 @@ $(function() {
         	let top = $("#iphone-draggable").position().top;
         	if (top >= 20) {
         		showAllMessageIP('#IPHONE', 'IP', 'all', 'iphone');
-        		// getInboxIP('#IPHONE', 'IP', 'nokia', 'iphone');
+        	}
+		}
+	});
+	$("#iphone-inbox-draggable").draggable({ axis: "y" });
+	$("#iphone-inbox-draggable").draggable({ revert: true });
+	$("#iphone-inbox-draggable").draggable({
+        stop: function() {
+        	let top = $("#iphone-inbox-draggable").position().top;
+        	if (top >= 20) {
+        		getInboxIP('#IPHONE', 'IP', 'iphone');
         	}
 		}
 	});
@@ -805,7 +865,7 @@ $(function() {
         stop: function() {
 			let top = $("#nokia-draggable").position().top;
         	if (top >= 20) {
-        		getInboxNO('#NOKIA', 'NO', 'iphone', 'nokia');
+        		getInboxNO('#NOKIA', 'NO', 'nokia');
         	}
 		}
 	});
@@ -839,60 +899,62 @@ $('#iphone-draggable').mouseHold(1000, function() {
 	editIP();
 });
 
-
 function selectAll() {
-    var checkboxes = document.getElementsByName('messip[]');
-    for (var i = 0; i < checkboxes.length; i++){
+	let checkboxes = $("#IPHONE input[name='messAllip[]']");
+    // let checkboxes = document.getElementsByName('messip[]');
+    for (let i = 0; i < checkboxes.length; i++){
     	checkboxes[i].checked = true;
     }
 
     $("#IPHONE .select-all").css("display", 'none');
     $("#IPHONE .un-check-all").css("display", 'block');
-    
+    $("#IPHONE .delete-message").css("pointer-events", 'auto');
+	$("#IPHONE .delete-message").css("opacity", 1);
 }
 
 function unCheckAll() {
-    var checkboxes = document.getElementsByName('messip[]');
-    for (var i = 0; i < checkboxes.length; i++){
+    let checkboxes = document.getElementsByName('messAllip[]');
+    for (let i = 0; i < checkboxes.length; i++){
     	checkboxes[i].checked = false;
     }
 
     $("#IPHONE .un-check-all").css("display", 'none');
     $("#IPHONE .select-all").css("display", 'block');
+    $("#IPHONE .delete-message").css("pointer-events", 'none');
+	$("#IPHONE .delete-message").css("opacity", 0.4);
 }
 
 function deleteMessage() {
-	// var lis = document.querySelectorAll('#IPHONE ul li');
-	// var mes = document.getElementsByName('name[]');
-	
-	// for(var i=0; li=lis[i]; i++) {
-	// 	if (mes[i].checked) {
-	// 		var myCoolDiv = document.getElementById("mess"+mes[i].value);
-	// 	    // li.parentNode.removeChild(li);
-	// 	    myCoolDiv.remove();
-	// 	}
-	// }
-
-	var checkboxes = document.getElementsByName('messip[]');
-	var arr = [];
+	let checkboxes = $("#IPHONE input[name='messAllip[]']:checked");
+	let arr = [];
     for (let i = 0; i < checkboxes.length; i++){
-    	if(checkboxes[i].checked == true) {
     		arr.push(checkboxes[i].value);
-    	}
     }
-
+	
     for (let i = 0; i < arr.length; i++) {
-    	var myCoolDiv = document.getElementById("mess"+arr[i]);
-		myCoolDiv.remove();
-
+    	var el = document.getElementById("mess-ip" + arr[i]);
+		el.remove();
 		const ios = iphone.archiveMess.filter((item) => {
 	       if (item.id == arr[i]) {
 	           item.status = 4;
 	        }
         });
     }
+    iphone.setDeleteMess(1);
     cancelIP();
-    
+    showAllMessageIP('#IPHONE', 'IP', 'all', 'iphone');
 }
 
 
+function messChecked() {
+	this.countBoxChecked = $("#IPHONE input[name='messAllip[]']:checked");
+	alert(countBoxChecked.length);
+	if (countBoxChecked.length > 0) {
+		$("#IPHONE .delete-message").css("pointer-events", 'auto');
+		$("#IPHONE .delete-message").css("opacity", 1);
+	}
+	else {
+		$("#IPHONE .delete-message").css("pointer-events", 'none');
+		$("#IPHONE .delete-message").css("opacity", 0.4);
+	}
+}

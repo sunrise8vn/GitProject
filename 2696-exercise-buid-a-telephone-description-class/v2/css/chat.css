@@ -111,7 +111,7 @@ body {
 }
 
 .panel-footer {
- background-color: none; 
+ background-color: transparent;
  border-top: 0; 
  border-bottom-right-radius: 8px;
  border-bottom-left-radius: 8px;
@@ -234,6 +234,12 @@ body {
   width: 100%;
 }
 
+#IPHONE .div-compose {
+  border-bottom-left-radius: 9px;
+  border-bottom-right-radius: 9px;
+  background-color: rgb(250, 252, 255);
+}
+
 #IPHONE .div-compose .panel-body {
   overflow-y: auto;
   height: 395px;
@@ -258,7 +264,7 @@ body {
   width: 100%;
 }
 
-#nokia-draggable, #iphone-draggable, #iphone-draggable-home {
+#nokia-draggable, #iphone-draggable, #iphone-inbox-draggable, #iphone-draggable-home {
   cursor: pointer;
 }
 .div-compose, .div-sent, .div-all {
@@ -418,6 +424,8 @@ input [button] {
   position: absolute;
   background-color: #fff;
   opacity: 0;
+  background-size: cover;
+  background-position: center;
 }
 
 .grid-item:hover > img {
@@ -470,6 +478,11 @@ input [button] {
 
 #NOKIA .date {
   font-size: 16px;
+}
+
+.delete-message {
+  pointer-events: none;
+  opacity: 0.4;
 }
 
 .newMessage:hover, .select-all:hover, .un-check-all:hover, .delete-message:hover {
